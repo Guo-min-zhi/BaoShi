@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <title>Sign Up</title>
+
+    <link href="https://laracasts.com/css/min.css?v=157" rel="stylesheet">
+</head>
+
+<body class="">
+    <div class="page">
+        <!-- navbar begin -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a href="https://laracasts.com/" class="navbar-brand logo">
+                        抱石
+                    </a>
+                </div> <!-- navbar-header -->
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+
+                        <!-- Learn -->
+                        <li class="dropdown ">
+                            <a href="https://laracasts.com/lessons" class="navbar-link dropdown-toggle">Learn</a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="https://laracasts.com/lessons">Lessons</a></li>
+                                <li class=""><a href="https://laracasts.com/series">Series</a></li>
+                                <li class=""><a href="https://laracasts.com/collections">Collections</a></li>
+                                <li class=""><a href="https://laracasts.com/index">Laracasts Index</a></li>
+                                <li class=""><a href="https://laracasts.com/latest">What's New</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Discuss -->
+                        <li class="dropdown ">
+                            <a href="https://laracasts.com/discuss" class="navbar-link dropdown-toggle">Discuss</a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="https://laracasts.com/discuss">Forum</a></li>
+                                <li><a href="http://www.buzzsprout.com/11908/">Laravel Podcast</a></li>
+                                <li class=""><a href="https://laracasts.com/learn-with-jeffrey">Blog</a></li>
+                                <li><a href="http://facebook.com/laracasts">Facebook</a></li>
+                                <li><a href="http://twitter.com/laracasts">Twitter</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Deploy -->
+                        <li class="dropdown">
+                            <a href="https://forge.laravel.com/" class="navbar-link" target="_blank">Deploy</a>
+                        </li>
+
+                        <!-- Work -->
+                        <li id="navbar-link--work" class="dropdown">
+                            <a class="navbar-link" href="https://larajobs.com/?partner=36" target="_blank">Work</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active divided-list"><a href="https://laracasts.com/join" class="navbar-link">Sign Up</a></li>
+                        <li class=""><a href="https://laracasts.com/login?return=https://laracasts.com/signup" class="navbar-link">Log In</a></li>
+
+                    </ul>
+                </div> <!-- collapse -->
+            </div> <!-- container -->
+        </nav>
+        <!-- navbar end -->
+
+        <!-- signup banner begin -->
+        <div id="signup-banner" class="banner hide-from-mobile">
+            <div class="container">
+                <h2 class="wow fadeInDown signup-welcome animated" style="visibility: visible; -webkit-animation: fadeInDown;">
+                    "I'm sorry, but if you are not a member of Laracasts, what are you doing?!"<br>
+                    <small>- Taylor Otwell (Creator of Laravel)</small>
+                </h2>
+            </div>
+        </div>
+        <!-- signup banner end -->
+
+
+        <div class="container wrap">
+            <div class="row">
+                <div class="col-md-12 content">
+                    <div class="row" id="signup-form">
+                        <form method="POST" action="https://laracasts.com/subscriptions" accept-charset="UTF-8" class="col-md-8 col-md-offset-2" id="billing-form">
+                            <input name="_token" type="hidden" value="xtDRSMOk3h5vSjcIidZFhWjUYyBpVKYhjN6x80PD">
+                            <div class="panel panel-default registration">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <h1 class="panel-title col-lg-7 col-md-5 col-sm-7">
+                                            快来注册哦
+                                        </h1>
+
+                                        <div class="cc-icons col-lg-5 col-md-4">
+                                            <img src="./img/credit-card-icons.png" alt="All Credit Cards Supported">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="panel-body">
+                                <fieldset>
+                                    <h3 class="signup-subheading">Pick a Subscription:</h3>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="subscription-plan">Subscription Plan</label>
+
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="subscription-plan" name="subscription-plan">
+                                                <option value="monthly">$9 per month.</option>
+                                                <option value="yearly" selected="selected">$86 per year. Save 20%.</option>
+                                                <option value="forever">$249 for lifetime access.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </fieldset>                    
+                                <fieldset>
+                                    <h3 class="signup-subheading">Your Profile:</h3>
+
+                                    <!-- Text input-->
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="username">Username</label>
+
+                                        <div class="col-md-8">
+                                            <input class="form-control input-md" id="username" required="1" name="username" type="text">
+                                        </div>
+                                    </div>
+                                        <!-- Text input-->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="email">Email Address</label>
+
+                                            <div class="col-md-8">
+                                                <input class="form-control input-md" id="email" required="1" name="email" type="text">
+                                            </div>
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="password">Desired Password</label>
+
+                                            <div class="col-md-8">
+                                                <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+                                            </div>
+                                        </div>
+
+                                        <!-- Text input-->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="password_confirmation">Repeat Password</label>
+
+                                            <div class="col-md-8">
+                                                <input id="password_confirmation" name="password_confirmation" type="password" placeholder="" class="form-control input-md" required="">
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <fieldset>
+                                        <h3 class="signup-subheading">Billing Information:</h3>
+
+                                        <!-- Text input-->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label">Credit Card Number</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" id="cc-number" class="form-control input-md cc-number" data-stripe="number" required="">
+                                            </div>
+                                        </div>
+
+                                        <!-- Select Basic -->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="cc-expiration-month">Expiration Date</label>
+
+                                            <div class="col-md-3">
+                                                <select class="form-control cc-expiration-month" data-stripe="exp-month" id="cc-expiration-month">
+                                                    <option value="1">January</option>
+                                                    <option value="2">February</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
+                                                </select> 
+                                            </div>
+                                            <div class="col-md-2">
+                                                <select class="form-control cc-expiration-year" data-stripe="exp-year" id="cc-expiration-year">
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                </select>        
+                                            </div>
+                                        </div>
+
+                                                <!-- Text input-->
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="cvv">CVV Number</label>
+
+                                            <div class="col-md-3">
+                                                <input id="cvv" type="text" placeholder="" class="form-control input-md cvc" data-stripe="cvc" required="">
+                                            </div>
+                                        </div>
+
+                                        <p class="text-muted" style="padding-top: 12px;">Don't worry. This form is 100% secure. Your private credit card data will never touch our servers.</p>
+                                    </fieldset>                                    
+                                </div>
+
+                                <div class="panel-footer clearfix">
+                                    <div class="pull-left col-md-7 terms" style="padding-left: 0;">
+                                        <p>
+                                            So you want to further your education? Smart choice! Please note that, by signing up, you agree to
+                                            enter a subscription, until you choose to cancel.
+                                        </p>
+                                    </div>
+
+                                    <div class="pull-right sign-up-buttons">
+                                        <button class="btn btn-primary" type="submit" name="create-account">
+                                            Join Laracasts       
+                                        </button>
+                                        <a href="https://laracasts.com/login" class="btn">Or Log In</a>
+                                    </div>
+
+                                    <div class="payment-errors col-md-8 text-danger" style="display:none"></div>
+                                </div>            
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer" class="wrap">
+            <div class="container">
+
+            </div>
+        </footer>
+    </div> <!-- close page div -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
