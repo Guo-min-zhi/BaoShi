@@ -1,0 +1,6 @@
+<?php if (!defined('THINK_PATH')) exit();?><form action="__URL__/register" method="post">
+	username: <input type="text" name="username"/> <br/>
+	password: <input type="password" name="password"> <br/>
+	email: <input type="text" name="email"/> <br/>
+	<input type="submit" value="register">
+</form>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <script type="text/javascript" src="jquery/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.2.0/css/bootstrap.css" />
+    <script type="text/javascript" src="bootstrap-3.2.0/js/bootstrap.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
+    <script type="text/javascript" src="uploadify/jquery.uploadify.js"></script>
+
+    <style type="text/css">
+    .container{
+    	width: 1008px;
+    }
+	.public-head-steps {
+		color: #989898;
+		font: 12px/16px "宋体",Tahoma;
+		margin: 20px 0 20px 40px;
+		height: 50px;
+	}
+    .public-head-steps .step-first-current {
+    	background-position: 0 0;
+    	width: 330px;
+    }
+    .public-head-steps .step-wrapper {
+		float: left;
+		width: 270px;
+		height: 50px;
+		background: url(http://lvyou2.bdimg.com/static/widget/pictravel/public-steps/img/public-step-icon_f349df74.png) no-repeat;
+		position: relative;
+	}
+	.public-head-steps .step-second {
+		background-position: 0 -300px;
+	}
+	.public-head-steps .step-third {
+		background-position: 0 -500px;
+	}
+	.upload-container {
+		background-color: #f5fafc;
+		height: 448px;
+		width: 978px;
+		border: 1px dashed #d4d7d7;
+		margin-top: -1px;
+		padding-top: 0;
+	}
+	.upload-button-wrapper{
+		margin-left: auto;
+		margin-right: auto;
+	}
+    </style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="public-head-steps">
+			<div class="step-wrapper step-first step-first-current"></div>
+			<div class="step-wrapper step-second"></div>
+			<div class="step-wrapper step-third"></div>
+		</div>
+		<div class="upload-container">
+
+			<div class="upload-button-wrapper">
+				<input type="file" name="file_upload" id="file_upload" />
+			</div>
+		</div>
+	</div>
+
+
+<script>
+	$(function() {
+		$('#file_upload').uploadify({
+			'auto': true,
+			'buttonText': '点击上传照片',
+			'buttonClass': 'btn btn-info location-middle',
+			'height': 40,
+			'width': 160,
+			'removeCompleted': false,
+			'swf'      : 'uploadify/uploadify.swf',
+			'uploader' : 'uploadify/uploadify.php',
+			'onUploadSuccess' : function(file, data, response) {
+	            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+	        },
+	        'onSelect': function(file){
+	        	alert('file name:' + file.name);
+	        }
+			
+		});
+	});
+</script>
+
+</body>
+</html>
