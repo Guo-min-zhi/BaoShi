@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://laracasts.com/ -->
+<html class="wf-museosanscondensed-n9-active wf-museosanscondensed-n3-active wf-museosanscondensed-n5-active wf-freighttextpro-n9-active wf-freighttextpro-n4-active wf-active">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><script src="./The Best Laravel and PHP Screencasts_files/analytics.js"></script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=u(e),f=c.length,s=i(a,o,r),p=0;f>p;p++)c[p].apply(s,n);return s}function a(t,e){f[t]=u(t).concat(e)}function u(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:u,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=l.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){l.proto="https"===p.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=l.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),u=window,c=u.document,f="addEventListener",s="attachEvent",p=(""+location).split("?")[0],l=e.exports={offset:i(),origin:p,features:{}};c[f]?(c[f]("DOMContentLoaded",o,!1),u[f]("load",n,!1)):(c[s]("onreadystatechange",r),u[s]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}]},{},["G9z0Bl"]);</script>
+	<meta name="description" content="The best Laravel screencasts on the web.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="stripe-key" content="pk_live_42cAcd2OvCDs4hpErd5ZscBT">
+
+	<title>The Best Laravel and PHP Screencasts</title>
+	<link rel="alternate" type="application/atom+xml" title="Laracasts" href="https://laracasts.com/feed">
+
+	<link href="https://laracasts.com/css/min.css?v=157" rel="stylesheet">
+
+
+	<script src="./The Best Laravel and PHP Screencasts_files/zjb5wvv.js"></script>
+	<style type="text/css">.tk-freight-text-pro{font-family:"freight-text-pro",sans-serif;}.tk-museo-sans-condensed{font-family:"museo-sans-condensed",sans-serif;}</style><link rel="stylesheet" href="https://use.typekit.net/c/1d0dea/1w;freight-text-pro,2,WHY:P:n4,WM0:P:n9;museo-sans-condensed,2,XS6:P:n3,XS8:P:n5,XSD:P:n9/d?3bb2a6e53c9684ffdc9a9bf31f5b2a62623a71fdbda06dee3874e56ac6aa1f0f5612bf0e4fa96f9d400b3139a8c7b3f455b375736ca088690d685d098900aa3ceeec492d7e946fb78458921d6d2251f1a172060d202fa83b31d037cef878222955f50b797f3acaaa6b9a6619726b2b202f09e3bb52c81b92263071addb94b5b4a65f0aaf73e5438e1d71f58eefb9a704de58955f1030a456045351"><script>try{Typekit.load();}catch(e){}</script>
+
+	<link href="https://laracasts.com/webfonts/ss-steedicons.css" rel="stylesheet">
+</head>
+
+<body class="home ">
+
+
+	<script id="flash-template" type="text/template">
+	<div class="flash_message alert alert-info">
+	<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+
+	<p>
+	<i class="icon icon-2x icon-bullhorn"></i>
+	<a href="#" class="flash_message__body"></a>
+	</p>
+	</div>
+	</script>
+
+
+	<div class="page">
+
+		<nav class="navbar" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+					<a href="./The Best Laravel and PHP Screencasts_files/The Best Laravel and PHP Screencasts.html" class="navbar-brand logo">
+						抱石
+					</a>
+				</div> <!-- navbar-header -->
+
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+
+						<!-- Learn -->
+						<li class="dropdown ">
+							<a href="https://laracasts.com/lessons" class="navbar-link dropdown-toggle">Learn</a>
+							<ul class="dropdown-menu">
+								<li class=""><a href="https://laracasts.com/lessons">Lessons</a></li>
+								<li class=""><a href="https://laracasts.com/series">Series</a></li>
+								<li class=""><a href="https://laracasts.com/collections">Collections</a></li>
+								<li class=""><a href="https://laracasts.com/index">Laracasts Index</a></li>
+								<li class=""><a href="https://laracasts.com/latest">What's New</a></li>
+							</ul>
+						</li>
+
+						<!-- Discuss -->
+						<li class="dropdown ">
+							<a href="https://laracasts.com/discuss" class="navbar-link dropdown-toggle">Discuss</a>
+							<ul class="dropdown-menu">
+								<li class=""><a href="https://laracasts.com/discuss">Forum</a></li>
+								<li><a href="http://www.buzzsprout.com/11908/">Laravel Podcast</a></li>
+								<li class=""><a href="https://laracasts.com/learn-with-jeffrey">Blog</a></li>
+								<li><a href="http://facebook.com/laracasts">Facebook</a></li>
+								<li><a href="http://twitter.com/laracasts">Twitter</a></li>
+							</ul>
+						</li>
+
+						<!-- Deploy -->
+						<li class="dropdown">
+							<a href="https://forge.laravel.com/" class="navbar-link" target="_blank">Deploy</a>
+						</li>
+
+						<!-- Work -->
+						<li id="navbar-link--work" class="dropdown">
+							<a class="navbar-link" href="https://larajobs.com/?partner=36" target="_blank">Work</a>
+						</li>
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class=" divided-list"><a href="https://laracasts.com/join" class="navbar-link">注册</a></li>
+						<li class=""><a href="https://laracasts.com/login?return=https://laracasts.com" class="navbar-link">登陆</a></li>
+					</ul>
+				</div> <!-- collapse -->
+			</div> <!-- container -->
+		</nav>
+
+
+		<div class="home-banner">
+			<div class="container banner-inner">
+				<h1 class="wow bounceInDown animated" style="visibility: visible; -webkit-animation: bounceInDown;">It's Like Netflix For Developers</h1>
+				<p class="subheading wow fadeIn animated" data-wow-delay=".7s" style="visibility: visible; -webkit-animation: fadeIn 0.7s;">What will you learn next?</p>
+
+				<div class="home-banner-links wow fadeIn slideInRight animated" data-wow-delay=".4s" style="visibility: visible; -webkit-animation: slideInRight 0.4s;">
+					<a href="https://laracasts.com/join" class="btn">
+						<i class="ss-womanwink"></i>
+						Sign Up
+					</a>
+					<span>or</span>
+
+					<a href="https://laracasts.com/lessons" class="btn">
+						<i class="ss-search"></i>
+						Start Binging
+					</a>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- POPULAR LESSONS -->
+		<div class="piece home-browsing home-bg--dark">
+			<div class="container wrap wow fadeInDown animated" style="visibility: visible; -webkit-animation: fadeInDown;">
+				<h2 class="lessons__heading text-center hide-from-mobile" style="font-size: 2.4em">The most concise screencasts for the working developer, updated daily.</h2>
+				<div class="row home-browsing">
+					<a href="https://laracasts.com/series/object-oriented-bootcamp-in-php">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Object-Oriented Bootcamp</h2>
+							<i class="ss-backpack "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/whats-new-in-laravel-5">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>What's New in Laravel 5.0</h2>
+							<i class="ss-lightning "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/laravel-5-from-scratch">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Laravel 5 From Scratch</h2>
+							<i class="ss-notebook "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/understanding-regular-expressions">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Understand Regular Expressions</h2>
+							<i class="ss-question "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/how-to-be-awesome-in-phpstorm">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Be Awesome in PHPStorm</h2>
+							<i class="ss-window "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/build-a-laravel-app-from-scratch">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Build Larabook From Scratch</h2>
+							<i class="ss-mountains "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/code-katas-in-php">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Code Katas in PHP</h2>
+							<i class="ss-dottedtriangle "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/server-management-with-forge">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Server Management With Forge</h2>
+							<i class="ss-commandline "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/commands-and-domain-events">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Commands and Domain Events</h2>
+							<i class="ss-chats "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/series/the-lifecycle-of-a-new-feature">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>The Lifecycle of a New Feature</h2>
+							<i class="ss-search "></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/lessons/pick-a-strategy">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>Pick a Strategy</h2>
+							<i class="ss-ink difficulty-2"></i>
+						</div>
+					</a>
+					<a href="https://laracasts.com/lessons/the-template-method-pattern">
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center browse-item">
+							<h2>The Template Method Pattern</h2>
+							<i class="ss-box difficulty-2"></i>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- RENAISSANCE -->
+		<div class="piece" id="buy-lunch">
+			<div class="text-center container wrap">
+				<h2 class="wow fadeIn alone animated" style="visibility: visible; -webkit-animation: fadeIn;">
+					<a href="https://laracasts.com/join">Buy me lunch</a> once a month, and I'll teach you<br>
+					everything about <a href="http://laracasts.com/">Laravel</a> and modern PHP workflow.
+				</h2>
+			</div>
+		</div>
+
+		<!-- TESTIMONIALS -->
+		<div class="piece testimonials" id="home-reviews">
+			<div class="container wrap wow fadeIn animated" style="visibility: visible; -webkit-animation: fadeIn;">
+
+				<h2 class="lessons__heading"><a href="https://laracasts.com/testimonials">These folks think Laracasts is pretty dang cool...</a></h2>
+				<div class="row">
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://laravel.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/taylor-otwell.jpg" alt="Taylor Otwell">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://laravel.com/">Taylor Otwell</a></h4>
+								<p class="testimony-body">Laracasts is insane!</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://heybigname.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/shawn-mccool.jpg" alt="Shawn McCool">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://heybigname.com/">Shawn McCool</a></h4>
+								<p class="testimony-body">Laracasts is the shit.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://besnappy.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/ian-landsman.jpg" alt="Ian Landsman">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://besnappy.com/">Ian Landsman</a></h4>
+								<p class="testimony-body">Really, Laracasts is totally off the hook. Jeffrey Way is an amazing teacher.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://driesvints.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/dries-vints.jpg" alt="Dries Vints">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://driesvints.com/">Dries Vints</a></h4>
+								<p class="testimony-body">Probably the most "must-watch" web development screencasts on the internet.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://ericlbarnes.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/eric-barnes.jpg" alt="Eric Barnes">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://ericlbarnes.com/">Eric Barnes</a></h4>
+								<p class="testimony-body">Laracasts is the premier learning tool for Laravel. The tutorials are always concise and relevant. If you use Laravel, subscribing is a must!</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://fideloper.com/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/chris-fidao.jpg" alt="Chris Fidao">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://fideloper.com/">Chris Fidao</a></h4>
+								<p class="testimony-body">Even when developing something I "know," I review Laracasts on the topic. There's always something new Jeff talks about, even if it's just a different point of view.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="http://www.ricardof.com.br/">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/ricardo-fuhrmann.jpg" alt="Ricardo Fuhrmann">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="http://www.ricardof.com.br/">Ricardo Fuhrmann</a></h4>
+								<p class="testimony-body">The best resource to learn Laravel! Jeffrey did an amazing job. This was exactly what was missing for the community.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="https://github.com/ionut-tanasa">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/ionut-tanasa.jpg" alt="Ionut Tanasa">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="https://github.com/ionut-tanasa">Ionut Tanasa</a></h4>
+								<p class="testimony-body">Laracasts was the missing piece in learning Laravel. Yeah there were some series on other websites, but none of them was at this level.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 testimonial">
+						<div class="row">
+							<div class="avatar col-md-5">
+								<a href="https://github.com/tolu360">
+									<img class="img-circle" src="./The Best Laravel and PHP Screencasts_files/tolu-olowu.jpg" alt="Tolu Olowu">
+								</a>
+							</div>
+
+							<div class="testimonial-main col-md-7">
+								<h4 class="media-heading"><a href="https://github.com/tolu360">Tolu Olowu</a></h4>
+								<p class="testimony-body">Jeffrey is simply a one-of-a-kind tutor - teaching is obviously his calling. Laravel and Laracasts, twice as nice!!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2 class="text-center zeroed"><a href="https://laracasts.com/testimonials">Want more? Check out a massive catalog of testimonials.</a></h2>
+			</div>
+		</div>
+
+		<!-- HI I'M JEFFREY -->
+		<div class="piece" id="meet-jeffrey">
+			<div class="container wrap">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-3">
+						<img src="./The Best Laravel and PHP Screencasts_files/6fa6f0343e6c25ab7d7a68ae018fa5df" class="avatar">
+					</div>
+
+					<div class="col-md-9">
+						<h2 class="pulse">Hi, I'm Jeffrey!</h2>
+
+						<p>
+							There's a chance that you may already know me! Well-respected in the PHP community,
+							I've written a number of <a href="https://leanpub.com/laravel-testing-decoded">successful books</a>,
+							built <a href="https://github.com/JeffreyWay/Laravel-4-Generators">popular packages</a>,
+							contributed to many open-source projects, spoken at <a href="http://userscape.com/laracon/2014/jeffreyway.html">every Laracon conference</a>,
+							been a guest on countless PHP podcasts (including <a href="http://www.buzzsprout.com/11908/170101-laravel-io-episode-13-cute-tools-with-jeffrey-way-taylor-otwell-maksim-surguy-and-shawn-mccool">Laravel.io</a>, <a href="http://phptownhall.com/blog/2014/02/15/episode-19-jeffrey-laracasts-bdfls/">PHP Town Hall</a>,
+							<a href="http://shoptalkshow.com/episodes/005-with-jeffrey-way/">Shop Talk</a>, and <a href="http://bootstrapped.fm/bootstrapped-episode-46-jeffrey-way-of-laracasts/">Bootstrapped.fm</a>),
+							and contributed to the largest web development <a href="http://www.creativebloq.com/net-magazine">magazines</a> in the world.
+						</p>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- GET GOING -->
+		<div class="text-center piece piece__dark" id="level-up">
+			<div class="container wrap">
+				<h2 class="wow pulse alone" style="visibility: hidden; -webkit-animation: none;">
+					<a href="https://laracasts.com/lessons">Start browsing,</a> or <a href="https://laracasts.com/join">make the decision to level up!</a>        </h2>
+				</div>
+			</div>
+
+			<footer id="footer" class="wrap ">
+				<div class="container">
+					<ul class="col-md-4 naked footer-nav" style="padding-left: 0; margin-bottom: 5em;">
+						<li>Laracasts — 2014</li>
+						<li class="divider"></li>
+						<li><a href="https://laracasts.com/about">About</a></li>
+						<li><a href="https://laracasts.com/testimonials">Testimonials</a></li>
+						<li><a href="https://laracasts.com/faq">FAQ</a></li>
+						<li><a href="https://laracasts.com/all">All Lessons</a></li>
+						<li><a href="https://laracasts.uservoice.com/">Requests</a></li>
+						<li>
+							<a href="mailto:laracasts@helpful.io" data-helpful="laracasts" data-helpful-title="Got a question?" data-helpful-name="" data-helpful-email="">Customer Support</a>
+						</li>
+						<li><a href="https://laracasts.com/feed">RSS</a></li>
+						<li><a href="https://laracasts.com/stats">Statistics</a></li>
+
+						<li class="divider"></li>
+
+						<li><a href="https://laracasts.com/join">Sign Up</a>                </li><li><a href="https://laracasts.com/login">Log In</a></li>
+					</ul>
+
+					<div class="inline-nav col-md-4 text-center footer-hosting">
+						<p>Proudly hosted with <a href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/?refcode=d2070a2d5f35">DigitalOcean</a></p>
+					</div>
+
+					<ul class="inline-nav inline-nav-right nav-icons col-md-4 footer-social">
+						<li class="pull-right"><a href="http://www.youtube.com/user/laracasts/videos?flow=list&live_view=500&sort=dd&view=0"><i class="icon-youtube icon-2x"></i></a></li>
+						<li class="pull-right"><a href="http://facebook.com/laracasts"><i class="icon-facebook icon-2x"></i></a></li>
+						<li class="pull-right"><a href="http://twitter.com/laracasts"><i class="icon-twitter icon-2x"></i></a></li>
+					</ul>
+				</div>
+			</footer>
+
+		</div> <!-- close page div -->
+
+		<script>var Views = {};</script>
+		<script src="./The Best Laravel and PHP Screencasts_files/pusher.min.js"></script>
+		<script src="./The Best Laravel and PHP Screencasts_files/all.js"></script><div class="selectize-dropdown demo-default single" style="display: none; width: 1140px; top: 39px; left: 141.5px; visibility: visible;"><div class="selectize-dropdown-content"><div data-value="mail" data-selectable="" class="option active">mail</div><div data-value="acceptance testing" data-selectable="" class="option">acceptance testing</div><div data-value="angular" data-selectable="" class="option">angular</div><div data-value="annotation" data-selectable="" class="option">annotation</div><div data-value="apache" data-selectable="" class="option">apache</div><div data-value="api" data-selectable="" class="option">api</div><div data-value="architecture" data-selectable="" class="option">architecture</div><div data-value="artisan" data-selectable="" class="option">artisan</div><div data-value="authentication" data-selectable="" class="option">authentication</div><div data-value="authorization" data-selectable="" class="option">authorization</div></div></div>
+		<script>new WOW().init();</script>
+		<script src="./The Best Laravel and PHP Screencasts_files/si1yxxq3.js"></script>
+		<script async="" src="./The Best Laravel and PHP Screencasts_files/widget.js"></script>
+
+
+		<!-- Google Analytics -->
+		<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+
+		ga('create','UA-44120322-1');ga('send','pageview');
+		</script>
+
+
+
+
+		<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","licenseKey":"63eeee14d0","applicationID":"3670257","transactionName":"ZARTYhYAWBJQW0ReVl1OZEQNTl8PVV1IGUlbEQ==","queueTime":0,"applicationTime":179,"ttGuid":"","agentToken":"","userAttributes":"","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-476.min.js"}</script>
+
+		<script src="./The Best Laravel and PHP Screencasts_files/nr-476.min.js"></script><script type="text/javascript" src="./The Best Laravel and PHP Screencasts_files/63eeee14d0"></script></body></html>
