@@ -1,57 +1,29 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
-    <load href='/sites/BaoShi/Public/bootstrap-3.2.0/css/bootstrap.css' />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-    <div class="container">
-        <div class="page-header">
-            <h2>用户列表</h2>
-        </div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>用户名</th>
-                    <th>邮箱</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <volist name="users" id="user">
-                    <tr>
-                        <td>{$key+1}</td>
-                        <td>{$user.username}</td>
-                        <td>{$user.email}</td>
-                        <td>
-                            <a href="__URL__/userinfo?id={$user.id}" class="btn btn-info btn-xs">详情</a>
-                            <a href="__URL__/deleteuser?id={$user.id}" class="btn btn-info btn-xs">删除</a>
-                        </td>
-                    </tr>
-                </volist>
-            </tbody>
-        </table>    
-    </div>
 
 
+<div class="page-header">
+    <h2>用户列表</h2>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="users" id="user">
+            <tr>
+                <td>{$key+1}</td>
+                <td>{$user.username}</td>
+                <td>{$user.email}</td>
+                <td>
+                    <a href="__URL__/userinfo?id={$user.id}" class="btn btn-info btn-xs">详情</a>
+                    <a href="__URL__/deleteuser?id={$user.id}" class="btn btn-info btn-xs">删除</a>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>    
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <load href='/sites/BaoShi/Public/jquery-1.11.1.min.js' />
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <load href='/sites/BaoShi/Public/bootstrap-3.2.0/js/bootstrap.js' />
-</body>
-</html>
