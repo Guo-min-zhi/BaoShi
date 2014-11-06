@@ -13,25 +13,27 @@
 		<div class="upload-button-wrapper">
 			<input type="file" name="file_upload" id="file_upload" />
 		</div>
+
+		<button class="btn btn-default" id="satrtUploadBtn" onclick="$('#file_upload').uploadify('upload', '*');">上传</button>
 	</div>
 </div>
 
 <script>
 	(function($){
 		$('#file_upload').uploadify({
-			'auto': true,
+			'auto': false,
 			'buttonText': '点击上传照片',
 			'height': 40,
 			'width': 160,
 			'removeCompleted': false,
 			'swf'      : '/sites/BaoShi/Public/uploadify/uploadify.swf',
-			'uploader' : '__URL__/upload/',
-			'onUploadSuccess' : function(file, data, response) {
+			'uploader' : '__URL__/upload/'
+			/*'onUploadSuccess' : function(file, data, response) {
 	            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
 	        },
 	        'onSelect': function(file){
 	        	alert('file name:' + file.name);
-	        }
+	        }*/
 			
 		});
 	})(jQuery);

@@ -43,6 +43,7 @@ class AlbumAction extends Action{
 	    	$Photo = M('Photo');
 	    	$info = $upload->getUploadFileInfo();
 	    	foreach ($info as $photo) {
+	    		// 将图片路径、时间存入数据库
 	    		$one['time'] = date("Y-m-d H:i:s");
 	    		$one['path'] = $photo['savepath'].$photo['savename'];
 	    		$result = $Photo->add($one);
@@ -52,6 +53,12 @@ class AlbumAction extends Action{
 	    }
 	}
 
+
+	public function edit($albumId){
+
+		$this->albumId = $albumId;
+		$this->display();
+	}
 
 }
 
