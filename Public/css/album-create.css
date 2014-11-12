@@ -1,8 +1,17 @@
 .create-wrapper {
 	width: 980px;
-	height: 370px;
 	margin: 0 auto;
-	padding-top: 100px;
+	padding-top: 10px;
 	text-align: center;
 	background: #f5fafc url(http://lvyou2.bdimg.com/static/pictravel/create/img/create-bg_453065db.png) no-repeat bottom center;
+}
+.create-form span {
+    color: #999;
+    font: 12px Tahoma;
+    line-height: 12px;
+}
+.create-form p {
+    text-align: right;
+    height: 16px;
+    font: 12px Tahoma;
 }

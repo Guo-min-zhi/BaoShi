@@ -157,18 +157,27 @@ class UserAction extends Action{
                 $headPhoto = $upload->getUploadFileInfo();
                 $one = $User->getByUsername($username);
                 if($one != null){
-                    $one["head"] = $headPhoto[0]['savepath'].$headPhoto[0]['savename'];
-                    dump($one["head"]);
+                    $one["head"] = substr($headPhoto[0]['savepath'].$headPhoto[0]['savename'], 1);
                     $User->save($one);
-                    echo "dddd";
+                    echo $one["head"];
                 }
-//            $this->success('上传成功！');
-                echo "success";
             }
         }else {
-            echo "no username:".$username;
+            echo "username is null";
         }
+    }
 
+    public function info(){
+        $username = "aa";
+        $User = M("User");
+        $one = $User->getByUsername($username);
+        if($one != null){
+            if($one.head == null){
+                $one->head = "/Public/img/photo.svg";
+            }
+            $this->one = $one;
+            $this->display();
+        }
     }
 
 }

@@ -1,6 +1,6 @@
-<load href='/BaoShi/Public/css/upload-photo.css' />
-<load href='/BaoShi/Public/uploadify/uploadify.css' />
-<load href='/BaoShi/Public/uploadify/jquery.uploadify.js' />
+<load href='/Public/css/upload-photo.css' />
+<load href='/Public/uploadify/uploadify.css' />
+<load href='/Public/uploadify/jquery.uploadify.js' />
 
 <div class="container">
 	<div class="public-head-steps">
@@ -10,23 +10,23 @@
 	</div>
 	<div class="upload-container">
 
-		<div class="upload-button-wrapper">
-			<input type="file" name="file_upload" id="file_upload" />
-		</div>
-
-		<button class="btn btn-default" id="satrtUploadBtn" onclick="$('#file_upload').uploadify('upload', '*');">上传</button>
 	</div>
+    <div class="upload-button-wrapper">
+        <input type="file" name="file_upload" id="file_upload" />
+    </div>
+
+    <!--<button class="btn btn-default" id="satrtUploadBtn" onclick="$('#file_upload').uploadify('upload', '*');">上传</button>-->
 </div>
 
 <script>
 	(function($){
 		$('#file_upload').uploadify({
-			'auto': false,
+			'auto': true,
 			'buttonText': '点击上传照片',
 			'height': 40,
 			'width': 160,
 			'removeCompleted': false,
-			'swf'      : '/sites/BaoShi/Public/uploadify/uploadify.swf',
+			'swf'      : '/Public/uploadify/uploadify.swf',
 			'uploader' : '__URL__/upload/'
 			/*'onUploadSuccess' : function(file, data, response) {
 	            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);

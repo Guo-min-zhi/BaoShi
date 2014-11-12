@@ -6,13 +6,71 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+/*.card-block {*/
+	/*background: #FFF;*/
+	/*position: relative;*/
+	/*display: inline-block;*/
+	/*width: 310px;*/
+	/*margin: 0 25px 30px 0;*/
+	/*letter-spacing: normal;*/
+	/*border-radius: 5px 5px 3px 3px;*/
+	/*vertical-align: top;*/
+/*}*/
+.container {
+    width: 1050px;
+    margin: 0 auto;
+}
 .card-block {
-	background: #FFF;
-	position: relative;
-	display: inline-block;
-	width: 310px;
-	margin: 0 25px 30px 0;
-	letter-spacing: normal;
-	border-radius: 5px 5px 3px 3px;
-	vertical-align: top;
+    background: #FFF;
+    position: relative;
+    display: inline-block;
+    width: 310px;
+    margin: 0 25px 30px 0;
+    letter-spacing: normal;
+    border-radius: 5px 5px 3px 3px;
+    vertical-align: top;
+}
+
+.view-count {
+    background: url(http://lvyou0.bdimg.com/static/user/widget/pictravel/img/view_a46569b.png) no-repeat;
+    right: 70px;
+}
+.reply-count {
+    background: url(http://lvyou1.bdimg.com/static/user/widget/pictravel/img/reply_ece3efc.png) no-repeat;
+    right: 10px;
+}
+.view-count, .reply-count {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    height: 16px;
+    padding-left: 22px;
+    font: 14px/18px "华文细黑","微软雅黑";
+    color: #FFF;
+    color: rgba(255,255,255,.9);
+}
+.card-info {
+    color: #666;
+    padding: 10px 10px 0;
+    font: normal normal 12px/30px "微软雅黑","黑体";
+}
+.person-avatar {
+    display: inline-block;
+    overflow: hidden;
+}
+.card-detail {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    width: 240px;
+}
+.card-detail-time {
+    margin-bottom: 5px;
+}
+.card-info strong {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font: normal normal 18px/30px "微软雅黑","黑体";
 }

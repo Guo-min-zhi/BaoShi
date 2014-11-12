@@ -1,5 +1,5 @@
-<load href='/BaoShi/Public/uploadify/uploadify.css' />
-<load href='/BaoShi/Public/uploadify/jquery.uploadify.js' />
+<load href='/Public/uploadify/uploadify.css' />
+<load href='/Public/uploadify/jquery.uploadify.js' />
 
 <div class="container">
     <div class="row">
@@ -7,10 +7,10 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <img src="/BaoShi/Public/img/head.png" alt="..." class="img-rounded" style="width: 240px; height: 240px;">
+            <img id="bigHead" src="/Public/img/head.png" alt="..." class="img-rounded" style="width: 240px; height: 240px;">
         </div>
         <div class="col-lg-6">
-            <img src="/BaoShi/Public/img/head.png" alt="..." class="img-rounded" style="width: 140px; height: 140px;">
+            <img id="smallHead" src="/Public/img/head.png" alt="..." class="img-rounded" style="width: 140px; height: 140px;">
         </div>
     </div>
 </div>
@@ -20,10 +20,10 @@
         $('#file_upload').uploadify({
             'auto': true,
             'buttonText': '点击上传头像',
-            'swf'      : '/BaoShi/Public/uploadify/uploadify.swf',
+            'swf'      : '/Public/uploadify/uploadify.swf',
             'uploader' : '__URL__/uploadHead/',
             'onUploadSuccess' : function(file, data, response) {
-                alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+                $("#bigHead").attr("src", data);
              }
             /*
              'onSelect': function(file){

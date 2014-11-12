@@ -1,43 +1,51 @@
-<load href='/sites/BaoShi/Public/css/album-create.css' />
+<load href='/Public/css/album-create.css' />
 
 <div class="container create-wrapper">
-	<h3>一趟旅程，一段回忆，一本画册，取个美名</h3>
-	<form class="form-horizontal" role="form" action="__URL__/createAlbum" method="POST">
+    <div class="page-header">
+        <h3>一趟旅程，一段回忆，一本画册，取个美名</h3>
+    </div>
+	<form class="form-horizontal create-form" role="form" action="__URL__/createAlbum" method="POST">
 		<div class="form-group">
-			<label for="album-name" class="col-sm-2 control-label">名称</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="albumName" name="albumName" placeholder="请输入10个字内的标题">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="请输入名称">
+                <p class="word-count">
+                    <span id="j-words-count">0</span>
+                    <span>/10</span>
+                </p>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+
+		<div class="form-group">
+            <div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="albumTheme" name="albumTheme" placeholder="请输入主题">
+                <p class="word-count">
+                    <span id="j-words-count">0</span>
+                    <span>/10</span>
+                </p>
 			</div>
+            <div class="col-sm-5"></div>
 		</div>
 
-		<p class="word-count">
-			<span id="j-words-count">0</span>
-			<span>/18</span>
-		</p>
+
 		<div class="form-group">
-			<label for="album-theme" class="col-sm-2 control-label">主题</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="albumTheme" name="albumTheme" placeholder="请输入10个字内的标题">
+            <div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="albumDescription"  name="albumDescription" placeholder="请输入影集描述">
+                <p class="word-count">
+                    <span id="j-words-count">0</span>
+                    <span>/50</span>
+                </p>
 			</div>
+            <div class="col-sm-3"></div>
 		</div>
 
-		<p class="word-count">
-			<span id="j-words-count">0</span>
-			<span>/18</span>
-		</p>
 		<div class="form-group">
-			<label for="album-description" class="col-sm-2 control-label">描述</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="albumDescription"  name="albumDescription" placeholder="请输入10个字内的标题">
-			</div>
-		</div>
-		<p class="word-count">
-			<span id="j-words-count">0</span>
-			<span>/18</span>
-		</p>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-9">
-				<button type="submit" class="btn btn-default">创建</button>
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-default">创建影集</button>
 			</div>
 		</div>
 	</form>

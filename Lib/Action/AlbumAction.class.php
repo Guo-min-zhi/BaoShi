@@ -2,6 +2,12 @@
 
 class AlbumAction extends Action{
 
+    /**
+     * 创建影集
+     * @param $albumName
+     * @param $albumTheme
+     * @param $albumDescription
+     */
 	public function createAlbum($albumName, $albumTheme, $albumDescription){
 		
 		$album['name'] = $albumName;
@@ -16,7 +22,7 @@ class AlbumAction extends Action{
 			if($result){
 				redirect('uploadphoto', 2, '页面跳转中');
 			}else{
-				echo "create album fail.";
+				$this->error("创建失败");
 			}
 		}
 	}
