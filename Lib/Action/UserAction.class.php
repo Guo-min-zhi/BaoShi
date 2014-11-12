@@ -6,16 +6,20 @@ class UserAction extends Action{
 	 */
 	public function login(){
 		if ($this->isGet()) {
+            layout(false);
 			$this->display();
 		}else if($this->isPost()){
 			$username = $_POST["username"];
 			$password = $_POST["password"];
 			$user = $this->hasUser($username, $password);
 			if($user != null){
-				echo "login successful!";
+//				echo "login successful!";
+                $_SESSION["name"] = $username;
+                $this->redirect("Album/albumlist");
 			}
 			else{
-				echo "login fail!";
+//				echo "login fail!";
+                $this->redirect("User/login");
 			}
 		}
 	}
@@ -36,15 +40,19 @@ class UserAction extends Action{
 	 */
 	public function register(){
 		if($this->isGet()){
+            layout(false);
 			$this->display();
 		}else if($this->isPost()){
 			$User = M("User");
 			if($User->create()){
 				$result = $User->add();
 				if($result){
-					echo "add success";
+//					echo "add success";
+                    session(array('name'=>$_POST["username"], 'expire'=>3600));
+                    $this->redirect("Album/albumlist");
 				}else{
-					echo "add fail";
+//					echo "add fail";
+                    $this->redirect("User/register");
 				}
 			}else{
 				echo "create fail";
@@ -85,6 +93,46 @@ class UserAction extends Action{
 			$this->display();
 		}
 	}
+
+    /**
+     * 检查用户名是否重复
+     * @param string $username
+     */
+    public function checkName($username=""){
+        if(!empty($username)){
+            $User = M("User");
+            if($User->getByUsername($username)){
+                $this->ajaxReturn("d", "用户名重复", 0);
+            }else{
+                $this->ajaxReturn("d", "success", 1);
+            }
+        }else{
+            $this->ajaxReturn("asd", "必须填写用户名", 0);
+        }
+    }
+
+    public function changePassword(){
+        if($this->isGet()){
+            $this->display();
+        }else if($this->isPost()){
+            $old = $_POST["originalPassword"];
+            $newPassword = $_POST["newPassword"];
+            $newPasswordAgain = $_POST["newPasswordAgain"];
+
+            $username = $_SESSION["name"];
+            $User = M("User");
+            $one = $User->getByUsername($username);
+            if($one != null and $one["password"] == $old and $newPassword == $newPasswordAgain){
+                $one["password"] = $newPassword;
+                $User->save($one);
+                $this->success("修改密码成功");
+//                echo "successful";
+            }else{
+                $this->error("修改密码失败");
+//                echo "error";
+            }
+        }
+    }
 
 }
 
