@@ -133,6 +133,43 @@ class UserAction extends Action{
             }
         }
     }
+    public function uploadHead(){
+        $username = "aa";
+        if($username != null) {
+            //=============================================================
+            // 上传参数的设置
+            //=============================================================
+            import('ORG.Net.UploadFile');
+            $upload = new UploadFile();// 实例化上传类
+            $upload->maxSize  = 3145728 ;// 设置附件上传大小
+            $upload->allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+            $upload->savePath =  './Public/heads/';// 设置附件上传目录
+            $upload->thumb = true;
+            $upload->thumbPrefix = 'm_,s_';
+            $upload->thumbMaxWidth = '140,50';
+            $upload->thumbMaxHeight = '140,50';
+            //=============================================================
+
+            if(!$upload->upload()) {// 上传错误提示错误信息
+                $this->error($upload->getErrorMsg());
+            }else{// 上传成功
+                $User = M("User");
+                $headPhoto = $upload->getUploadFileInfo();
+                $one = $User->getByUsername($username);
+                if($one != null){
+                    $one["head"] = $headPhoto[0]['savepath'].$headPhoto[0]['savename'];
+                    dump($one["head"]);
+                    $User->save($one);
+                    echo "dddd";
+                }
+//            $this->success('上传成功！');
+                echo "success";
+            }
+        }else {
+            echo "no username:".$username;
+        }
+
+    }
 
 }
 

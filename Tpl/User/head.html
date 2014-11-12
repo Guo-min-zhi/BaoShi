@@ -1,8 +1,35 @@
+<load href='/BaoShi/Public/uploadify/uploadify.css' />
+<load href='/BaoShi/Public/uploadify/jquery.uploadify.js' />
+
 <div class="container">
     <div class="row">
-
+        <input type="file" name="file_upload" id="file_upload" />
     </div>
     <div class="row">
-
+        <div class="col-lg-6">
+            <img src="/BaoShi/Public/img/head.png" alt="..." class="img-rounded" style="width: 240px; height: 240px;">
+        </div>
+        <div class="col-lg-6">
+            <img src="/BaoShi/Public/img/head.png" alt="..." class="img-rounded" style="width: 140px; height: 140px;">
+        </div>
     </div>
 </div>
+
+<script>
+    (function($){
+        $('#file_upload').uploadify({
+            'auto': true,
+            'buttonText': '点击上传头像',
+            'swf'      : '/BaoShi/Public/uploadify/uploadify.swf',
+            'uploader' : '__URL__/uploadHead/',
+            'onUploadSuccess' : function(file, data, response) {
+                alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+             }
+            /*
+             'onSelect': function(file){
+             alert('file name:' + file.name);
+             }*/
+
+        });
+    })(jQuery);
+</script>
