@@ -48,14 +48,12 @@ class AlbumAction extends Action{
 	    }else{// 上传成功
 	    	$Photo = M('Photo');
 	    	$info = $upload->getUploadFileInfo();
-	    	foreach ($info as $photo) {
-	    		// 将图片路径、时间存入数据库
-	    		$one['time'] = date("Y-m-d H:i:s");
-	    		$one['path'] = $photo['savepath'].$photo['savename'];
-	    		$result = $Photo->add($one);
-	    	}
-	    	
-	        $this->success('上传成功！');
+            // 将图片路径、时间存入数据库
+            $one['time'] = date("Y-m-d H:i:s");
+            $one['path'] = substr($info[0]['savepath'].$info[0]['savename'], 1);
+            $result = $Photo->add($one);
+	    	echo $one["path"];
+
 	    }
 	}
 
