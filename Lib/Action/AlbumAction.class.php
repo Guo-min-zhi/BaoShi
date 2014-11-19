@@ -20,11 +20,16 @@ class AlbumAction extends Action{
 		if($Album->create($album)){
 			$result = $Album->add($album);
 			if($result){
-				redirect('uploadphoto', 2, '页面跳转中');
+				redirect('uploadphoto/albumId/'.$result, 2, '创建成功，页面跳转中');
 			}else{
 				$this->error("创建失败");
 			}
 		}
+	}
+
+	public function uploadphoto($albumId){
+		$this->albumId = $albumId;
+		$this->display();
 	}
 
 	public function upload(){
@@ -51,6 +56,7 @@ class AlbumAction extends Action{
             // 将图片路径、时间存入数据库
             $one['time'] = date("Y-m-d H:i:s");
             $one['path'] = substr($info[0]['savepath'].$info[0]['savename'], 1);
+            $one['album_id'] = $_POST['albumId']; 
             $result = $Photo->add($one);
 	    	echo $one["path"];
 
