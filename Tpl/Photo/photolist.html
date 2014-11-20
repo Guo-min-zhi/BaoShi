@@ -1,5 +1,26 @@
+<load href='/Public/css/photo-list.css' />
 
-
-<div class="caontainer">
-	
+<div class="container">
+	<div class="page-header">
+		<h2>影集名称 </h2>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default">添加照片</button>
+			<button type="button" class="btn btn-default">整理照片</button>
+			<button type="button" class="btn btn-info">发布</button>
+		</div>
+	</div>
+	<div class="row">
+		
+	</div>
+	<div class="well">
+		<div class="row">
+			<foreach name="photos" item="photo">
+				<div class="col-xs-6 col-md-4">
+					<a href="{:U('Photo/view', 'pid='.$photo['id'])}" class="thumbnail">
+						<img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
+					</a>
+				</div>
+			</foreach>
+		</div>	
+	</div>
 </div>

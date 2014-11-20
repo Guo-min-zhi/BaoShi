@@ -66,6 +66,9 @@ class AlbumAction extends Action{
 
 	public function edit($albumId){
 
+		$Photo = M('Photo');
+		$this->photoList = $Photo->where('album_id = '.$albumId)->select();
+		
 		$this->albumId = $albumId;
 		$this->display();
 	}

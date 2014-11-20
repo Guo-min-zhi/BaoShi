@@ -8,6 +8,7 @@
 	</div>
 	<div class="edit-toolbar">
 		<button class="btn btn-primary">继续添加照片</button>
+		<a class="btn btn-primary" href="{:U("Photo/photolist?albumId=$albumId")}">下一步</a>
 	</div>
 	<div class="upload-container">
 		<div class="row edit-one-scene">
@@ -20,9 +21,9 @@
 			</div>
 			<div class="col-md-9">
 				<div class="row scene-photo">
-					<img src="/Public/img/photo.svg" alt="..." class="img-rounded">
-					<img src="/Public/img/photo.svg" alt="..." class="img-rounded">
-					<img src="/Public/img/photo.svg" alt="..." class="img-rounded">
+					<volist name="photoList" id="photo">
+						<img src="{$photo.path}" alt="..." class="img-rounded" style="height: 110px; width: 110px;">
+					</volist>
 				</div>
 				<div class="scene-tip">
 					<span class="scene-tip-word">
