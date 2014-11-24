@@ -133,6 +133,10 @@ class UserAction extends Action{
             }
         }
     }
+
+    /**
+     * 上传用户头像
+     */
     public function uploadHead(){
         $username = "aa";
         if($username != null) {
@@ -152,7 +156,8 @@ class UserAction extends Action{
 
             if(!$upload->upload()) {// 上传错误提示错误信息
                 $this->error($upload->getErrorMsg());
-            }else{// 上传成功
+            }else{
+                // 上传成功, 返回头像路径
                 $User = M("User");
                 $headPhoto = $upload->getUploadFileInfo();
                 $one = $User->getByUsername($username);

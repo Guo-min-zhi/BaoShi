@@ -4,10 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <img src="/Public/img/photo.svg" class="img-circle">
+                <if condition="$userinfo['head'] eq null">
+                    <img src="/Public/img/photo.svg" class="img-circle" style="width:140px; height:140px;">
+                <else/>
+                    <img src="{$userinfo['head']}" class="img-circle" style="width:140px; height:140px;">
+                </if>
             </div>
             <div class="col-lg-10">
-                <h2>守望411</h2>
+                <h2>{$userinfo['username']}</h2>
             </div>
         </div>
     </div>
@@ -16,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <h4>我的影集[4]</h4>
+            <h4>我的影集[{$albums|count}]</h4>
         </div>
         <div class="col-lg-6">
             <a href="create" class="btn btn-info pull-right">创建影集</a>
@@ -25,7 +29,38 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="card-block">
+            <volist name="albums" id="album">
+                <div class="card-block">
+                    <a class="card-cover" href="{:U('Photo/photolist', 'albumId='.$album['id'])}" target="_blank">
+                        <if condition="$album['cover'] eq null">
+                            <img width="310" height="207" style="" src="/Public/img/photo.svg">
+                        <else/>
+                            <img width="310" height="207" style="" src="{$album['cover']}">
+                        </if>
+                        <span class="view-count" title="浏览">5</span>
+                        <span class="reply-count" title="回复">0</span>
+                    </a>
+                    <div class="card-info">
+                        <div class="person-avatar">
+                            <if condition="$userinfo['head'] eq null">
+                                <img src="/Public/img/photo.svg" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
+                            <else/>
+                                <img src="{$userinfo['head']}" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
+                            </if>
+                        </div>
+                        <div class="card-detail">
+                            <strong>{$album['name']}</strong>
+                            <p class="card-detail-time">{$album['time']|strtotime|date="Y-m-d",###}&nbsp;[2图]</p>
+                        </div>
+                    </div>
+                    <div class="card-tool">
+                        <a class="tool-edit J_tool-edit" href="http://lvyou.baidu.com/pictravel/edit/c0610ed9b86035140f6a4aca" title="编辑"><em></em></a>
+                        <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><em></em></a>
+                    </div>
+                </div>
+            </volist>
+            
+            <!-- <div class="card-block">
                 <a class="card-cover" href="#" target="_blank">
                     <img width="310" height="207" style="" src="/Public/img/photo.svg">
                     <span class="view-count" title="浏览">5</span>
@@ -44,47 +79,7 @@
                     <a class="tool-edit J_tool-edit" href="http://lvyou.baidu.com/pictravel/edit/c0610ed9b86035140f6a4aca" title="编辑"><em></em></a>
                     <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><em></em></a>
                 </div>
-            </div>
-            <div class="card-block">
-                <a class="card-cover" href="#" target="_blank">
-                    <img width="310" height="207" style="" src="/Public/img/photo.svg">
-                    <span class="view-count" title="浏览">5</span>
-                    <span class="reply-count" title="回复">0</span>
-                </a>
-                <div class="card-info">
-                    <div class="person-avatar">
-                        <img src="/Public/img/photo.svg" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
-                    </div>
-                    <div class="card-detail">
-                        <strong>xi zang</strong>
-                        <p class="card-detail-time">2014/09/21&nbsp;3天&nbsp;[2图]</p>
-                    </div>
-                </div>
-                <div class="card-tool">
-                    <a class="tool-edit J_tool-edit" href="http://lvyou.baidu.com/pictravel/edit/c0610ed9b86035140f6a4aca" title="编辑"><em></em></a>
-                    <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><em></em></a>
-                </div>
-            </div>
-            <div class="card-block">
-                <a class="card-cover" href="#" target="_blank">
-                    <img width="310" height="207" style="" src="/Public/img/photo.svg">
-                    <span class="view-count" title="浏览">5</span>
-                    <span class="reply-count" title="回复">0</span>
-                </a>
-                <div class="card-info">
-                    <div class="person-avatar">
-                        <img src="/Public/img/photo.svg" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
-                    </div>
-                    <div class="card-detail">
-                        <strong>xi zang</strong>
-                        <p class="card-detail-time">2014/09/21&nbsp;3天&nbsp;[2图]</p>
-                    </div>
-                </div>
-                <div class="card-tool">
-                    <a class="tool-edit J_tool-edit" href="http://lvyou.baidu.com/pictravel/edit/c0610ed9b86035140f6a4aca" title="编辑"><em></em></a>
-                    <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><em></em></a>
-                </div>
-            </div>
+            </div> -->
         </div>
 
 
