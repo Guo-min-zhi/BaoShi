@@ -7,11 +7,14 @@
 
 <div class="row">
 	<div class="col-xs-10 col-md-10">
-		<a href="#" class="thumbnail">
+		<div class="thumbnail">
 			<img data-src="holder.js/100%x180" alt="..." src="{$photo.path}">
-		</a>
+            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$next)}"><div class="photo-next-btn"></div></a>
+            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$pre)}"><div class="photo-pre-btn"></div></a>
+		</div>
 	</div>
 	<div class="col-md-2">
 		照片信息
+        {$name}
 	</div>
 </div>

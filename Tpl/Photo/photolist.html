@@ -16,7 +16,7 @@
 		<div class="row">
 			<foreach name="photos" item="photo">
 				<div class="col-xs-6 col-md-4">
-					<a href="{:U('Photo/view', 'pid='.$photo['id'])}" class="thumbnail">
+					<a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}" class="thumbnail">
 						<img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
 					</a>
 				</div>

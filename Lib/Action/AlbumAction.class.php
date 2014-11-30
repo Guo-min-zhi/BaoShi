@@ -15,6 +15,7 @@ class AlbumAction extends Action{
 		$album['description'] = $albumDescription;
 		$album['time'] = date("Y-m-d H:i:s");
 		$album['publish'] = 0;
+        $album['userId'] = 1;
 
 		$Album = M('Album');
 		if($Album->create($album)){
