@@ -1,4 +1,5 @@
 <load href='/Public/css/album-edit.css' />
+<load href='/Public/jquery-ui-1.11.2/jquery-ui.css' />
 
 <div class="container">
 	<div class="public-head-steps">
@@ -22,37 +23,54 @@
 			<div class="col-md-9">
 				<div class="row scene-photo">
 					<volist name="photoList" id="photo">
-						<img src="{$photo.path}" alt="..." class="img-rounded" style="height: 110px; width: 110px;">
+						<span class="photoWrapper">
+							<img src="{$photo.path}" alt="..." class="img-rounded img-draggable" style="height: 110px; width: 110px;">
+						</span>
 					</volist>
 				</div>
 				<div class="scene-tip">
 					<span class="scene-tip-word">
-						<span class="tip-icon"></span>
-						拖动照片至拍摄地点进行关联，画册会更加清晰美观哦
+						<span class="glyphicon glyphicon-arrow-down"></span> 拖动照片至拍摄地点进行关联，画册会更加清晰美观哦
 					</span>
 				</div>
+
 				<div class="row scene-location">
+					<button type="button" class="btn btn-default btn-xs"  data-toggle="modal" data-target="#tagCreate" style="margin-bottom: 5px;">
+						<span class="glyphicon glyphicon-plus"></span> 增加标签
+					</button>
 					<div class="scene-list">
-						<li class="scene-add J_scene-add" data-dayid="c575f103a354b35224b0a5d6"><div class="scene-item"><p><span class="plus-icon"></span>上海</p></div></li>
-						<li class="scene-add J_scene-add" data-dayid="c575f103a354b35224b0a5d6"><div class="scene-item"><p><span class="plus-icon"></span>添加拍摄地点</p></div></li>
-					</div>
-				</div>
-				<div class="scene-tip">
-					<span class="scene-tip-word">
-						<span class="tip-icon"></span>
-						拖动照片至拍摄地点进行关联，画册会更加清晰美观哦
-					</span>
-				</div>
-				<div class="row scene-tag">
-					<div class="scene-list">
-						<li class="scene-add J_scene-add" data-dayid="c575f103a354b35224b0a5d6"><div class="scene-item"><p><span class="plus-icon"></span>风景</p></div></li>
-						<li class="scene-add J_scene-add" data-dayid="c575f103a354b35224b0a5d6"><div class="scene-item"><p><span class="plus-icon"></span>动物</p></div></li>
+						<!-- <li class="scene-add">
+							<div class="scene-item">
+								<p><span class="glyphicon glyphicon-tag"></span>上海</p>
+							</div>
+						</li> -->
+						
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row edit-one-scene">
+		<!-- <div class="row edit-one-scene">
 			album id = {$albumId}
+		</div> -->
+	</div>
+
+	<!-- 创建标签弹出框 -->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="tagCreate">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="modal-title">创建标签</div>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control" id="inputTagName" placeholder="标签名称">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="createTagBtn">创建</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+<load href='/Public/jquery-ui-1.11.2/jquery-ui.js' />
+<load href='/Public/js/album-edit.js' />
