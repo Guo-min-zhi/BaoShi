@@ -9,7 +9,6 @@ class AlbumAction extends Action{
      * @param $albumDescription
      */
 	public function createAlbum($albumName, $albumTheme, $albumDescription){
-		
 		$album['name'] = $albumName;
 		$album['theme'] = $albumTheme;
 		$album['description'] = $albumDescription;
@@ -66,10 +65,30 @@ class AlbumAction extends Action{
 
 
 	public function edit($albumId){
-		$Photo = M('Photo');
-		$this->photoList = $Photo->where('album_id = '.$albumId)->select();
+		$Photo = D('Photo');
+		$photosArray = array();
+		$photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
+		foreach ($photoList as $photo) {
+			$createDate = date('Y-m-d', strtotime($photo['time']));
+			if (!array_key_exists($createDate, $photosArray)) {
+				$photosArray[$createDate] = array();
+				$photosArray[$createDate]['photos'] = array();
+				$photosArray[$createDate]['tags'] = array();
+			}
+			array_push($photosArray[$createDate]['photos'], $photo);
+			$tags = $photo['tags'];
+			foreach ($tags as $tag) {
+				if (!array_key_exists($photosArray[$createDate]['tags'], $tag)) {
+					array_push($photosArray[$createDate]['tags'], $tag);
+				}
+			}
+		}
+
 		
-		$this->albumId = $albumId;
+		dump($photosArray);
+
+		$this->photoList = $photoList;
+		$this->albumId = date('Y-m-d', strtotime('2014-11-19 10:35:47'));
 		$this->display();
 	}
 

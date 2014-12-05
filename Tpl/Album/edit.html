@@ -23,9 +23,12 @@
 			<div class="col-md-9">
 				<div class="row scene-photo">
 					<volist name="photoList" id="photo">
-						<span class="photoWrapper">
-							<img src="{$photo.path}" alt="..." class="img-rounded img-draggable" style="height: 110px; width: 110px;">
-						</span>
+						<div class="photoWrapper">
+							<img src="{$photo.path}" photoId="{$photo.id}" alt="..." class="img-rounded img-draggable" style="height: 110px; width: 110px;">
+							<div class="taglist">
+								<!-- <span class="label label-primary img-tag">Prim</span> -->
+							</div>
+						</div>
 					</volist>
 				</div>
 				<div class="scene-tip">
@@ -49,9 +52,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="row edit-one-scene">
+		<div class="row edit-one-scene">
 			album id = {$albumId}
-		</div> -->
+		</div>
 	</div>
 
 	<!-- 创建标签弹出框 -->
@@ -70,6 +73,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- end -->
 </div>
 
 <load href='/Public/jquery-ui-1.11.2/jquery-ui.js' />

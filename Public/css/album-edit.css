@@ -91,3 +91,12 @@
 	padding-top: 20px;
 	position: relative;
 }
+.photoWrapper{
+	float: left;
+	width: 110px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+.img-tag{
+	display: inline-block;
+}
