@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h2>影集名称 </h2>
+		<h2>{$album.name}</h2>
 		<div class="btn-group">
 			<button type="button" class="btn btn-default">添加照片</button>
 			<button type="button" class="btn btn-default">整理照片</button>
@@ -16,11 +16,30 @@
 		<div class="row">
 			<foreach name="photos" item="photo">
 				<div class="col-xs-6 col-md-4">
-					<a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}" class="thumbnail">
-						<img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
-					</a>
+                    <div class="thumbnail">
+                        <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}">
+                            <img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
+                        </a>
+                        <div class="caption">
+                            <form action="__URL__/addDesc" method="post">
+                                <input type="hidden" value="{$photo.id}" name="photoId">
+                                <p>
+                                    <textarea class="form-control" rows="2" placeholder="添加照片描述" name="desc">{$photo.description}</textarea>
+                                </p>
+                                <p>
+                                    <input type="submit" class="btn btn-primary btn-xs" value="确定"></input>
+                                    <input type="reset" class="btn btn-default btn-xs" value="清空"></input>
+                                </p>
+                            </form>
+                            <div class="alertDiv{$photo.id}">
+
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</foreach>
 		</div>	
 	</div>
 </div>
+
+<load href='/Public/js/photolist.js' />

@@ -12,46 +12,60 @@
 		<a class="btn btn-primary" href="{:U("Photo/photolist?albumId=$albumId")}">下一步</a>
 	</div>
 	<div class="upload-container">
-		<div class="row edit-one-scene">
-			<div class="col-md-3">
-				<div class="scene-div">
-					<a class="day-delete J_day-delete" data-dayid="c575f103a354b35224b0a5d6" href="###"></a>
-					<div class="scene-delete"></div>
-					<div class="scene-title">场景一</div>
-				</div>
-			</div>
-			<div class="col-md-9">
-				<div class="row scene-photo">
-					<volist name="photoList" id="photo">
-						<div class="photoWrapper">
-							<img src="{$photo.path}" photoId="{$photo.id}" alt="..." class="img-rounded img-draggable" style="height: 110px; width: 110px;">
-							<div class="taglist">
-								<!-- <span class="label label-primary img-tag">Prim</span> -->
-							</div>
-						</div>
-					</volist>
-				</div>
-				<div class="scene-tip">
+
+        <volist name="photosArray" id="oneDay">
+            <div class="row edit-one-scene">
+                <div class="col-md-3">
+                    <div class="scene-div">
+                        <a class="day-delete J_day-delete" data-dayid="c575f103a354b35224b0a5d6" href="###"></a>
+                        <div class="scene-delete"></div>
+                        <div class="scene-title">{$key}</div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row scene-photo">
+                        <volist name="oneDay.photos" id="photo">
+                            <div class="photoWrapper">
+                                <img src="{$photo.path}" photoId="{$photo.id}" alt="..." class="img-rounded img-draggable" style="height: 110px; width: 110px;">
+                                <div class="taglist">
+                                    <volist name="photo.tags" id="photoTag">
+                                        <span class="label label-primary img-tag" tagid="{$photoTag.id}">{$photoTag.name}</span>
+                                    </volist>
+                                    <!-- <span class="label label-primary img-tag">Prim</span> -->
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                    <div class="scene-tip">
 					<span class="scene-tip-word">
 						<span class="glyphicon glyphicon-arrow-down"></span> 拖动照片至拍摄地点进行关联，画册会更加清晰美观哦
 					</span>
-				</div>
+                    </div>
 
-				<div class="row scene-location">
-					<button type="button" class="btn btn-default btn-xs"  data-toggle="modal" data-target="#tagCreate" style="margin-bottom: 5px;">
-						<span class="glyphicon glyphicon-plus"></span> 增加标签
-					</button>
-					<div class="scene-list">
-						<!-- <li class="scene-add">
-							<div class="scene-item">
-								<p><span class="glyphicon glyphicon-tag"></span>上海</p>
-							</div>
-						</li> -->
-						
-					</div>
-				</div>
-			</div>
-		</div>
+                    <div class="row scene-location">
+                        <button type="button" class="btn btn-default btn-xs"  data-toggle="modal" data-target="#tagCreate" style="margin-bottom: 5px;">
+                            <span class="glyphicon glyphicon-plus"></span> 增加标签
+                        </button>
+                        <div class="scene-list">
+                            <volist name="oneDay.tags" id="tag">
+                                <li class="scene-add">
+                                    <div class="scene-item" tagid="{$tag.id}">
+                                        <p><span class="glyphicon glyphicon-tag"></span>{$tag.name}</p>
+                                    </div>
+                                </li>
+                            </volist>
+                            <!-- <li class="scene-add">
+                                <div class="scene-item">
+                                    <p><span class="glyphicon glyphicon-tag"></span>上海</p>
+                                </div>
+                            </li> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </volist>
+
 		<div class="row edit-one-scene">
 			album id = {$albumId}
 		</div>

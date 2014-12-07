@@ -58,7 +58,10 @@ class AlbumAction extends Action{
             $one['path'] = substr($info[0]['savepath'].$info[0]['savename'], 1);
             $one['album_id'] = $_POST['albumId']; 
             $result = $Photo->add($one);
-	    	echo $one["path"];
+
+            $photo = $Photo->find($result);
+            $this->ajaxReturn($photo, 'upload success', 1);
+//	    	echo $one["path"];
 
 	    }
 	}
@@ -87,8 +90,10 @@ class AlbumAction extends Action{
 		
 		dump($photosArray);
 
+        $this->photosArray = $photosArray;
 		$this->photoList = $photoList;
-		$this->albumId = date('Y-m-d', strtotime('2014-11-19 10:35:47'));
+//		$this->albumId = date('Y-m-d', strtotime('2014-11-19 10:35:47'));
+		$this->albumId = $albumId;
 		$this->display();
 	}
 

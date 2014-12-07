@@ -2,23 +2,38 @@
 <load href='/Public/uploadify/uploadify.css' />
 <load href='/Public/uploadify/jquery.uploadify.js' />
 
+        <script>
+            function deletePhoto(fileID){
+                alert('delete '+fileID);
+            };
+        </script>
 <div class="container">
 	<div class="public-head-steps">
 		<div class="step-wrapper step-first step-first-current"></div>
 		<div class="step-wrapper step-second"></div>
 		<div class="step-wrapper step-third"></div>
 	</div>
-	<div class="upload-container">
-        <div class="photo-block">
-            <img src="/Public/img/photo.svg" class="img-rounded" style="height: 110px; width: 110px;">
-        </div>
-        <div class="photo-block">
-            <img src="/Public/img/photo.svg" class="img-rounded" style="height: 110px; width: 110px;">
-        </div>
-	</div>
     <div class="upload-button-wrapper">
-        <input type="file" name="file_upload" id="file_upload" />
-        <a class="btn btn-default" href="{:U("Album/edit?albumId=$albumId")}" >下一步</a>
+        <input type="file" name="file_upload" id="file_upload" class="btn btn-default" />
+    </div>
+    <div class="upload-container" id="upload-container-queue">
+        <div class="photo-block">
+            <!--<div class="cancel">-->
+                <!--<a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>-->
+            <!--</div>-->
+            <button type="button" class="close hidden">
+                <span aria-hidden="true" onclick="deletePhoto()">
+                    &times;
+                </span>
+                <span class="sr-only">Close</span>
+            </button>
+
+            <img src="/Public/img/photo.svg" class="img-rounded img-responsive" style="height: 110px; width: 110px;">
+        </div>
+
+    </div>
+    <div class="upload-button-wrapper">
+        <a class="btn btn-success btn-lg pull-right" href="{:U("Album/edit?albumId=$albumId")}" >下一步</a>
     </div>
 
     <!--<button class="btn btn-default" id="satrtUploadBtn" onclick="$('#file_upload').uploadify('upload', '*');">上传</button>-->
@@ -30,23 +45,46 @@
 			'auto': true,
 			'method': 'POST',
 			'buttonText': '点击上传照片',
-			'height': 40,
-			'width': 160,
 			'removeCompleted': false,
+            'queueSizeLimit' : 20,    //上传队列里最多有20张照片
+            'uploadLimit' : 20,       //一共可以上传20张照片
+            'queueID': 'upload-container-queue',
 			'formData': {
-				'albumId': {$albumId}	
+				'albumId': {$albumId}
 			},
 			'swf'      : '/Public/uploadify/uploadify.swf',
 			'uploader' : '__URL__/upload/',
+            'itemTemplate': '<div class="photo-block" id="${fileID}">\
+                <button type="button" class="close hidden">\
+                    <span aria-hidden="true" onclick="deletePhoto(${fileID});">\
+                        &times;\
+                    </span>\
+                    <span class="sr-only">Close</span>\
+                </button>\
+                <img src="/Public/img/photo.svg" pid="" class="img-rounded" style="height: 110px; width: 110px;">\
+                </div>',
 			'onUploadSuccess' : function(file, data, response) {
-                var html = '<div class="photo-block"><img src="'+data+'" class="img-rounded" style="height: 110px; width: 110px;"></div>';
-	            $(".upload-container").append(html);
-	        }
-            /*
-	        'onSelect': function(file){
-	        	alert('file name:' + file.name);
-	        }*/
-			
+                if(response == true){
+                    var fileId = file.id;
+                    data = $.parseJSON(data);
+                    var photoId = data.data.id;
+                    var photoPath = data.data.path;
+                    $("#"+fileId).find('img').attr('src', photoPath);
+                    $("#"+fileId).find('img').attr('pid', photoId);
+                }
+//                var html = '<div class="photo-block"><img src="'+data+'" class="img-rounded" style="height: 110px; width: 110px;"></div>';
+//	            $(".upload-container").append(html);
+	        },
+            'onCancel' : function (file) {
+                var a = '';
+            }
 		});
+
+        $(document).on('mouseover','.photo-block' , function () {
+            $(this).find('.close').removeClass("hidden").addClass('show');
+        });
+        $(document).on('mouseout', '.photo-block', function () {
+            $(this).find('.close').removeClass('show').addClass("hidden");
+        });
 	})(jQuery);
 </script>

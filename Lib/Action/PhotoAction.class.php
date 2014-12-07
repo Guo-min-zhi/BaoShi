@@ -9,6 +9,11 @@ class PhotoAction extends Action{
 	public function photolist($albumId){
 
 		$Photo = M("Photo");
+        $Album = M('Album');
+
+        $album = $Album->find($albumId);
+
+        $this->album = $album;
         $this->albumId = $albumId;
 		$this->photos = $Photo->where("album_id = ".$albumId)->select();
 		//dump($this->photos);
@@ -53,6 +58,20 @@ class PhotoAction extends Action{
 		layout(false);
 		$this->display();
 	}
+
+    /**
+     * 给照片增加评论
+     * @param $photoId
+     * @param $desc
+     */
+    function addDesc($photoId, $desc){
+        $Photo = M('Photo');
+        $photo = $Photo->find($photoId);
+        $Photo->description = $desc;
+        $Photo->save();
+
+        $this->ajaxReturn($photoId, 'add desc success', 1);
+    }
 }
 
 

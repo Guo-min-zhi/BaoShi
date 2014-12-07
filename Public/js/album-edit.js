@@ -47,6 +47,7 @@
 					//alert('remove '+name);
 					$.post('/index.php/Tag/photoDeleteTag', {'photoId': photoId, 'tagId': id});
 				}
+                currentTag = null;
 			}
 		}
 	});
@@ -60,7 +61,6 @@
 	// tag鼠标out操作
 	$(document).on('mouseout', ".scene-item", function(){
 		$(this).css('background-color', '');
-		currentTag= null;
 	});
 
 })(jQuery);
