@@ -1,13 +1,17 @@
 <load href='/Public/css/photo-list.css' />
 
 <div class="container">
+	
 	<div class="page-header">
 		<h2>{$album.name}</h2>
-		<div class="btn-group pull-right">
+		<a type="button" class="btn btn-default " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
+		<a type="button" class="btn btn-default " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
+		<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
+		<!-- <div class="btn-group pull-right">
 			<a type="button" class="btn btn-default" href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
 			<a type="button" class="btn btn-default" href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
 			<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="well" id="masonry">
