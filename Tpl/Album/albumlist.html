@@ -19,11 +19,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
-            <h4>我的影集[{$albums|count}]</h4>
-        </div>
-        <div class="col-lg-6">
-            <a href="create" class="btn btn-info pull-right">创建影集</a>
+        <div class="page-header">
+            <h3>我的影集[{$albums|count}]</h3>
         </div>
     </div>
 
@@ -32,10 +29,10 @@
             <volist name="albums" id="album">
                 <div class="card-block">
                     <a class="card-cover" href="{:U('Photo/photolist', 'albumId='.$album['id'])}" target="_blank">
-                        <if condition="$album['cover'] eq null">
-                            <img width="310" height="207" style="" src="/Public/img/photo.svg">
+                        <if condition="($album['photos']|count) eq 0">
+                            <img width="310" height="207" style="" src="/Public/img/photo.svg" class="img-rounded">
                         <else/>
-                            <img width="310" height="207" style="" src="{$album['cover']}">
+                            <img width="310" height="207" style="" src="{$album['photos'][0]['path']}" class="img-rounded">
                         </if>
                         <span class="view-count" title="浏览">5</span>
                         <span class="reply-count" title="回复">0</span>
@@ -43,20 +40,22 @@
                     <div class="card-info">
                         <div class="person-avatar">
                             <if condition="$userinfo['head'] eq null">
-                                <img src="/Public/img/photo.svg" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
+                                <img src="/Public/img/photo.svg" class="img-circle" style="width: 30px; height: 30px;">
                             <else/>
-                                <img src="{$userinfo['head']}" alt="守望411" class="img-circle" style="width: 30px; height: 30px;">
+                                <img src="{$userinfo['head']}" class="img-circle" style="width: 30px; height: 30px;">
                             </if>
                         </div>
                         <div class="card-detail">
                             <strong>{$album['name']}</strong>
-                            <p class="card-detail-time">{$album['time']|strtotime|date="Y-m-d",###}&nbsp;[2图]</p>
+                            <p class="card-detail-time">{$album['time']|strtotime|date="Y-m-d",###}&nbsp;[{$album['photos']|count}图]</p>
+                            <a href="{:U('Album/edit', 'albumId='.$album['id'])}" title="编辑"><em><span class="glyphicon glyphicon-edit"></span>编辑</em></a>
+                            <a href="{:U('Album/delete', 'albumId='.$album['id'])}" title="删除"><em><span class="glyphicon glyphicon-remove"></span></em>删除</a>
                         </div>
                     </div>
-                    <div class="card-tool">
-                        <a class="tool-edit J_tool-edit" href="http://lvyou.baidu.com/pictravel/edit/c0610ed9b86035140f6a4aca" title="编辑"><em></em></a>
-                        <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><em></em></a>
-                    </div>
+                    <!-- <div class="card-tool">
+                        <a href="#" title="编辑"><em><span class="glyphicon glyphicon-edit"></span>编辑</em></a>
+                        <a class="tool-delete J_tool-delete" href="http://lvyou.baidu.com/user/pictravel/15f0aa3e73d3f30e03e28d38###" title="删除"><span class="glyphicon glyphicon-remove"></span>删除</a>
+                    </div> -->
                 </div>
             </volist>
             
@@ -81,9 +80,5 @@
                 </div>
             </div> -->
         </div>
-
-
-
     </div>
-
 </div>

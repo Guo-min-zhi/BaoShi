@@ -105,9 +105,20 @@ class AlbumAction extends Action{
 		$this->userinfo = $User->find($user_id);
 
 		// find album information
-		$Album = M('Album');
-		$this->albums = $Album->where('userId = '.$user_id)->select();
+		$Album = D('Album');
+		$this->albums = $Album->where('userId = '.$user_id)->relation(true)->select();
+		//dump($this->albums);
 		$this->display();
+	}
+
+	public function delete($albumId){
+		$Album = M('Album');
+		$result = $Album->delete($albumId);
+		if ($result) {
+			$this->success('删除成功', '/index.php/Album/albumlist');
+		}else{
+			$this->error('删除失败', '/index.php/Album/albumlist');
+		}
 	}
 
 }
