@@ -1,4 +1,20 @@
-.container {
+/*.container {
     width: 1050px;
     margin: 0 auto;
-}
+}*/
+
+#masonry 
+    { 
+        padding: 0; 
+        min-height: 450px; 
+        margin: 0 auto; 
+    } 
+#masonry .thumbnail 
+    { 
+        width: 330px; 
+        margin: 20px;
+        padding: 0; 
+        border-width: 1px; 
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); 
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); 
+    } 

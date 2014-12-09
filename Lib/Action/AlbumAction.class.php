@@ -20,7 +20,8 @@ class AlbumAction extends Action{
 		if($Album->create($album)){
 			$result = $Album->add($album);
 			if($result){
-				redirect('uploadphoto/albumId/'.$result, 2, '创建成功，页面跳转中');
+				//redirect('uploadphoto/albumId/'.$result, 2, '创建成功，页面跳转中');
+				$this->success('创建成功，页面跳转中', '/index.php/Album/uploadphoto/albumId/'.$result);
 			}else{
 				$this->error("创建失败");
 			}
@@ -106,7 +107,7 @@ class AlbumAction extends Action{
 
 		// find album information
 		$Album = D('Album');
-		$this->albums = $Album->where('userId = '.$user_id)->relation(true)->select();
+		$this->albums = $Album->where('userId = '.$user_id)->relation(true)->order('time desc')->select();
 		//dump($this->albums);
 		$this->display();
 	}
@@ -118,6 +119,16 @@ class AlbumAction extends Action{
 			$this->success('删除成功', '/index.php/Album/albumlist');
 		}else{
 			$this->error('删除失败', '/index.php/Album/albumlist');
+		}
+	}
+
+	public function publis($albumId){
+
+		if ($albumId) {
+			$Album = M('Album');
+			$Album->find($albumId);
+			$Album->publish = 1;
+			$Album->save();
 		}
 	}
 
