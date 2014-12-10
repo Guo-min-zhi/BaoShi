@@ -22,6 +22,11 @@
                             <img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
                         </a>
                         <div class="caption">
+                        	<p>
+                        		<volist name="photo.tags" id="tag">
+                        			<span class="label label-info">{$tag.name}</span>
+                        		</volist>
+                        	</p>
                             <form action="__URL__/addDesc" method="post">
                                 <input type="hidden" value="{$photo.id}" name="photoId">
                                 <p>
@@ -30,6 +35,11 @@
                                 <p>
                                     <input type="submit" class="btn btn-primary btn-xs" value="确定"></input>
                                     <input type="reset" class="btn btn-default btn-xs" value="清空"></input>
+                                </p>
+                                <p>
+                                    <a href="javascript:void(0);" class="icon-remove-photo">
+                                	   <span class="glyphicon glyphicon-remove pull-right"></span>
+                                    </a>
                                 </p>
                             </form>
                             <div class="alertDiv{$photo.id}">

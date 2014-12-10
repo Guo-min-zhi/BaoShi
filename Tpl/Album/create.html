@@ -4,14 +4,14 @@
     <div class="page-header">
         <h3>一趟旅程，一段回忆，一本画册，取个美名</h3>
     </div>
-	<form class="form-horizontal create-form" role="form" action="__URL__/createAlbum" method="POST">
+	<form id="createForm" class="form-horizontal create-form" role="form" action="__URL__/createAlbum" method="POST">
 		<div class="form-group">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="请输入名称">
+                <input type="text" class="form-control" id="albumName" name="albumName" placeholder="请输入名称" required maxlength="10">
                 <p class="word-count">
-                    <span id="j-words-count">0</span>
-                    <span>/10</span>
+                    <span id="j-words-count">10字</span>
+                   <!--  <span>/10</span> -->
                 </p>
             </div>
             <div class="col-sm-4"></div>
@@ -21,10 +21,10 @@
 		<div class="form-group">
             <div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" id="albumTheme" name="albumTheme" placeholder="请输入主题">
+				<input type="text" class="form-control" id="albumTheme" name="albumTheme" placeholder="请输入主题" required maxlength="6">
                 <p class="word-count">
-                    <span id="j-words-count">0</span>
-                    <span>/10</span>
+                    <span id="j-words-count">6字</span>
+                   <!--  <span>/6</span> -->
                 </p>
 			</div>
             <div class="col-sm-5"></div>
@@ -34,10 +34,10 @@
 		<div class="form-group">
             <div class="col-sm-3"></div>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="albumDescription"  name="albumDescription" placeholder="请输入影集描述">
+                <textarea class="form-control" rows="3" id="albumDescription"  name="albumDescription" placeholder="请输入影集描述" required maxlength="50"></textarea>
                 <p class="word-count">
-                    <span id="j-words-count">0</span>
-                    <span>/50</span>
+                    <span id="j-words-count">50字</span>
+                    <!-- <span>/50</span> -->
                 </p>
 			</div>
             <div class="col-sm-3"></div>
@@ -50,3 +50,12 @@
 		</div>
 	</form>
 </div>
+
+
+<load href='/Public/js/jquery.validate.js' />
+<load href='/Public/js/messages_zh.js' />
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#createForm").validate();
+    });
+</script>

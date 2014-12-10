@@ -8,20 +8,20 @@ class PhotoAction extends Action{
 
 	public function photolist($albumId){
 
-		$Photo = M("Photo");
+		$Photo = D("Photo");
         $Album = M('Album');
 
         $album = $Album->find($albumId);
 
         $this->album = $album;
         $this->albumId = $albumId;
-		$this->photos = $Photo->where("album_id = ".$albumId)->select();
-		//dump($this->photos);
+		$this->photos = $Photo->where("album_id = ".$albumId)->relation(true)->select();
+		// dump($this->photos);
 		$this->display();
 	}
 
 	public function view($albumId, $pid){
-		$Photo = M('Photo');
+		$Photo = D('Photo');
         $allPhotos = $Photo->field('id')->where("album_id = ".$albumId)->order('id')->select();
         for($i=0; $i<sizeof($allPhotos); $i++){
             $one = $allPhotos[$i];
@@ -43,16 +43,16 @@ class PhotoAction extends Action{
         $this->next = $allPhotos[$next]['id'];
         $this->pre = $allPhotos[$pre]["id"];
         $this->albumId = $albumId;
-		$this->photo = $Photo->find($pid);
-
-        $path = $this->photo['path'];
+		$this->photo = $Photo->relation(true)->find($pid);
+        // dump($this->photo);
+        // $path = $this->photo['path'];
 //        $exif = exif_read_data($path, 0, true);
 //        dump($path);
 
 //        $this->name = $exif[$path][FileName];
 
-        $data = get_EXIF_JPEG("../..".$path);
-        dump($data);
+        // $data = get_EXIF_JPEG("../..".$path);
+        // dump($data);
 
 		// dump($this->photo);
 		layout(false);

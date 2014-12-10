@@ -3,13 +3,22 @@
     background: url("/Public/img/arrow.jpg") no-repeat -338px -195px;
     height: 73px;
     position: absolute;
-    top: 300px;
-    left: 999px;
+    top: 45%;
+    right: 20px;
+    opacity: 0.4;
+}
+.photo-next-btn:hover{
+    opacity: 0.8;
 }
 .photo-pre-btn{
     width: 73px;
     background: url("/Public/img/arrow.jpg") no-repeat -338px -105px;
     height: 73px;
     position: absolute;
-    top: 300px;
+    top: 45%;
+    left:20px;
+    opacity: 0.4;
+}
+.photo-pre-btn:hover{
+    opacity: 0.8;
 }

@@ -7,14 +7,25 @@
 
 <div class="row">
 	<div class="col-xs-10 col-md-10">
-		<div class="thumbnail">
+		<div class="thumbnail" style="background-color:black;">
 			<img data-src="holder.js/100%x180" alt="..." src="{$photo.path}">
-            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$next)}"><div class="photo-next-btn"></div></a>
-            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$pre)}"><div class="photo-pre-btn"></div></a>
+
+            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$next)}">
+            	
+            	<div class="photo-next-btn"></div>
+            </a>
+            <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$pre)}">
+            	<!-- <div id="floater"></div> -->
+            	<div class="photo-pre-btn" id="content"></div>
+            </a>
 		</div>
 	</div>
 	<div class="col-md-2">
-		照片信息
-        {$name}
+		<div class="page-header">
+			<h2>照片信息</h2>
+		</div>
+		<div class="caption">
+			<h3>{$photo.name}</h3>
+		</div>
 	</div>
 </div>
