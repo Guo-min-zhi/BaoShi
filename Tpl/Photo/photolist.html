@@ -18,6 +18,12 @@
 			<foreach name="photos" item="photo">
 				<!-- <div class="col-xs-6 col-md-4"> -->
                     <div class="thumbnail">
+                        <button type="button" class="close">
+                            <span aria-hidden="true" onclick="deletePhoto()">
+                                &times;
+                            </span>
+                            <span class="sr-only">Close</span>
+                        </button>
                         <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}">
                             <img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
                         </a>

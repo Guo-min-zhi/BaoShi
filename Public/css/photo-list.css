@@ -27,3 +27,13 @@
 .icon-remove-photo:hover{
     opacity: 1;
 }
+button.close{
+    position: absolute;
+    right: 0px;
+    height: 20px;
+    width: 20px;
+    background-color: black;
+}
+.close span{
+    color: white;
+}
