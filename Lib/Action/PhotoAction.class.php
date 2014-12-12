@@ -72,6 +72,12 @@ class PhotoAction extends Action{
 
         $this->ajaxReturn($photoId, 'add desc success', 1);
     }
+
+    function delete($photoId){
+        $Photo = M('Photo');
+        $Photo->delete($photoId);
+    }
+
 }
 
 

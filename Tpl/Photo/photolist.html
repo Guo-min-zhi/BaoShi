@@ -1,4 +1,7 @@
 <load href='/Public/css/photo-list.css' />
+<load href='/Public/js/masonry.pkgd.js' />
+<load href='/Public/js/imagesloaded.pkgd.js' />
+<load href='/Public/js/photolist.js' />
 
 <div class="container">
 	
@@ -17,20 +20,20 @@
 	<div class="well" id="masonry">
 			<foreach name="photos" item="photo">
 				<!-- <div class="col-xs-6 col-md-4"> -->
-                    <div class="thumbnail">
-                        <button type="button" class="close">
-                            <span aria-hidden="true" onclick="deletePhoto()">
-                                &times;
-                            </span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}">
+                    <div class="thumbnail" pid="{$photo.id}">
+                        <!--<button type="button" class="close">-->
+                            <!--<span aria-hidden="true" onclick="deletePhoto()">-->
+                                <!--&times;-->
+                            <!--</span>-->
+                            <!--<span class="sr-only">Close</span>-->
+                        <!--</button>-->
+                        <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}" target="_blank">
                             <img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
                         </a>
                         <div class="caption">
                         	<p>
                         		<volist name="photo.tags" id="tag">
-                        			<span class="label label-info">{$tag.name}</span>
+                        			<span class="label label-info img-tag">{$tag.name}</span>
                         		</volist>
                         	</p>
                             <form action="__URL__/addDesc" method="post">
@@ -57,7 +60,3 @@
 			</foreach>
 	</div>
 </div>
-
-<load href='/Public/js/masonry.pkgd.js' />
-<load href='/Public/js/imagesloaded.pkgd.js' />
-<load href='/Public/js/photolist.js' />

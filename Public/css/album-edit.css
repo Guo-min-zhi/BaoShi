@@ -108,6 +108,7 @@
 }
 .img-tag{
 	display: inline-block;
+    margin-right: 5px;
 }
 .edit-one-scene{
     background-color: #f5fafc;

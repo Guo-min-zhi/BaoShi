@@ -37,3 +37,13 @@ button.close{
 .close span{
     color: white;
 }
+.img-tag{
+    display: inline-block;
+    margin-right: 5px;
+}
+.comment-alert{
+    width: 95%;
+    height: 20px;
+    padding: 0px;
+    margin-bottom: 0px;
+}
