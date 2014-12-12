@@ -8,18 +8,25 @@
 		<div class="step-wrapper step-third"></div>
 	</div>
 	<div class="edit-toolbar">
-		<a class="btn btn-primary" href="{:U("Album/uploadphoto?albumId=$albumId")}">继续添加照片</a>
-		<a class="btn btn-primary" href="{:U("Photo/photolist?albumId=$albumId")}">下一步</a>
+		<a class="btn btn-info" href="{:U("Album/uploadphoto?albumId=$albumId")}">继续添加照片</a>
+		<a class="btn btn-info" href="{:U("Photo/photolist?albumId=$albumId")}">下一步</a>
 	</div>
 	<div class="upload-container">
 
         <volist name="photosArray" id="oneDay">
             <div class="row edit-one-scene">
                 <div class="col-md-3">
-                    <div class="scene-div">
+                    <!-- <div class="scene-div">
                         <a class="day-delete J_day-delete" data-dayid="c575f103a354b35224b0a5d6" href="###"></a>
                         <div class="scene-delete"></div>
-                        <div class="scene-title">{$key}</div>
+                        <div class="scene-title">
+                            <span class="glyphicon glyphicon-time"></span>{$key}
+                        </div>
+                    </div> -->
+                    <div class="scene-div">
+                        <div class="scene-title">
+                            <span class="glyphicon glyphicon-time"></span> {$key}
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -66,9 +73,9 @@
             </div>
         </volist>
 
-		<div class="row edit-one-scene">
+		<!-- <div class="row edit-one-scene">
 			album id = {$albumId}
-		</div>
+		</div> -->
 	</div>
 
 	<!-- 创建标签弹出框 -->

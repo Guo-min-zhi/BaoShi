@@ -229,7 +229,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					// Create the button
 					var $button = $('<div />', {
 						'id'    : settings.id + '-button',
-						'class' : 'uploadify-button ' + settings.buttonClass
+						'class' : ' ' + settings.buttonClass
 					});
 					if (settings.buttonImage) {
 						$button.css({
@@ -237,12 +237,12 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 							'text-indent'      : '-9999px'
 						});
 					}
-					$button.html('<span class="uploadify-button-text">' + settings.buttonText + '</span>')
-					.css({
-						'height'      : settings.height + 'px',
-						'line-height' : settings.height + 'px',
-						'width'       : settings.width + 'px'
-					});
+					$button.html('<span class="glyphicon glyphicon-cloud-upload"></span>' + settings.buttonText);
+					// .css({
+					// 	'height'      : settings.height + 'px',
+					// 	'line-height' : settings.height + 'px',
+					// 	'width'       : settings.width + 'px'
+					// });
 					// Append the button to the wrapper
 					$wrapper.append($button);
 

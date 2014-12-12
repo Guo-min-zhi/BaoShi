@@ -89,7 +89,7 @@ class AlbumAction extends Action{
 		}
 
 		
-		dump($photosArray);
+		// dump($photosArray);
 
         $this->photosArray = $photosArray;
 		$this->photoList = $photoList;
