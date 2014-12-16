@@ -4,6 +4,12 @@ require 'iptc.php';
 
 class AlbumAction extends Action{
 
+	public function checkIfLogin(){
+		$userid = session('userid');
+		if (empty($userid)) {
+			redirect("User/login");
+		}
+	}
     /**
      * 创建影集
      * @param $albumName
@@ -137,6 +143,14 @@ class AlbumAction extends Action{
 	}
 
 	public function albumlist(){
+		$userid = session('userid');
+		if (empty($userid)) {
+			$this->redirect("User/login");
+		}
+
+		// $this->checkIfLogin();
+		dump(session('username'));
+		dump(session('userid'));
 		$user_id = 1;
 
 		// find user information
