@@ -14,7 +14,9 @@ class UserAction extends Action{
 			$user = $this->hasUser($username, $password);
 			if($user != null){
 //				echo "login successful!";
-                $_SESSION["name"] = $username;
+                // save user info into session;
+                session('username', $username);
+                session('userid', $user['id']);
                 $this->redirect("Album/albumlist");
 			}
 			else{
@@ -23,6 +25,11 @@ class UserAction extends Action{
 			}
 		}
 	}
+
+    public function logout(){
+        session(null);
+        $this->redirect("User/login");
+    }
 
 	/**
 	 *	根据username和password判断用户是否存在

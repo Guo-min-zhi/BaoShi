@@ -1,10 +1,8 @@
 <?php
 
-include 'EXIF.php';
+require 'iptc.php';
 
 class PhotoAction extends Action{
-
-
 
 	public function photolist($albumId){
 
@@ -44,15 +42,6 @@ class PhotoAction extends Action{
         $this->pre = $allPhotos[$pre]["id"];
         $this->albumId = $albumId;
 		$this->photo = $Photo->relation(true)->find($pid);
-//        dump($this->photo);
-        // $path = $this->photo['path'];
-//        $exif = exif_read_data($path, 0, true);
-//        dump($path);
-
-//        $this->name = $exif[$path][FileName];
-
-        // $data = get_EXIF_JPEG("../..".$path);
-        // dump($data);
 
 		// dump($this->photo);
 		layout(false);
@@ -66,9 +55,19 @@ class PhotoAction extends Action{
      */
     function addDesc($photoId, $desc){
         $Photo = M('Photo');
-        $photo = $Photo->find($photoId);
+        //$photo = $Photo->find($photoId);
+        // Save photo description to database.
         $Photo->description = $desc;
         $Photo->save();
+
+        // Save photo description to photo self.
+        $photoAbsPath = substr($Photo->path, 1);
+        if (file_exists($photoAbsPath)) {
+            $iptcPhoto = new iptc($photoAbsPath);
+            $iptcPhoto->set(IPTC_CAPTION, $desc);
+            $iptcPhoto->write();
+        }
+
 
         $this->ajaxReturn($photoId, 'add desc success', 1);
     }
