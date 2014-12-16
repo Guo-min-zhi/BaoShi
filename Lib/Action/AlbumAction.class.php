@@ -4,12 +4,25 @@ require 'iptc.php';
 
 class AlbumAction extends Action{
 
+    /**
+     * 检查是否有session存在，不存在，则重定向到登录页
+     */
 	public function checkIfLogin(){
 		$userid = session('userid');
 		if (empty($userid)) {
-			redirect("User/login");
+			$this->redirect("User/login");
 		}
 	}
+
+    /**
+     * 跳转到创建影集页面
+     */
+    public function create(){
+        // check the session.
+        $this->checkIfLogin();
+
+        $this->display();
+    }
     /**
      * 创建影集
      * @param $albumName
@@ -17,12 +30,15 @@ class AlbumAction extends Action{
      * @param $albumDescription
      */
 	public function createAlbum($albumName, $albumTheme, $albumDescription){
+        // check the session.
+        $this->checkIfLogin();
+
 		$album['name'] = $albumName;
 		$album['theme'] = $albumTheme;
 		$album['description'] = $albumDescription;
 		$album['time'] = date("Y-m-d H:i:s");
 		$album['publish'] = 0;
-        $album['userId'] = 1;
+        $album['userId'] = session('userid');
 
 		$Album = M('Album');
 		if($Album->create($album)){
@@ -36,33 +52,19 @@ class AlbumAction extends Action{
 		}
 	}
 
+    /**
+     * 跳转到上传照片页面
+     * @param $albumId
+     */
 	public function uploadphoto($albumId){
 		$this->albumId = $albumId;
 		$this->display();
 	}
 
-	// public function create(){
-	// 	$filename = "Public/Uploads/2014.jpg";
-	// 	$this->name = $filename;
-	// 	if (file_exists($filename)) {
-	// 		// $exif = exif_read_data($filename,  0, true);
-	// 		// if (array_key_exists("EXIF", $exif) && array_key_exists("DateTimeOriginal", $exif["EXIF"])) {
-	// 		// 	$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
-	// 		// 	dump($dateOriginal);
-	// 		// }
-	// 		$objIPTC = new iptc($filename);
-	// 		//set title
-	// 		$objIPTC->set(IPTC_COPYRIGHT_STRING,"Here goes the new data");
-	// 		$objIPTC->set(IPTC_CAPTION,"这里是描述");
-	// 		$objIPTC->write();
-	// 		dump($objIPTC->get(IPTC_CAPTION));
-	// 	}
-
-	// 	$this->display();
-	// }
-
+    /**
+     * 上传照片
+     */
 	public function upload(){
-
 		//=============================================================
 		// 上传参数的设置
 		//=============================================================
@@ -97,18 +99,23 @@ class AlbumAction extends Action{
             		$one['take_time'] = $dateOriginal;
             	}
             } 
-            
+            // return the photo id.
             $result = $Photo->add($one);
-
+            // get the photo according above photo id.
             $photo = $Photo->find($result);
             $this->ajaxReturn($photo, 'upload success', 1);
-//	    	echo $one["path"];
-
 	    }
 	}
 
 
+    /**
+     * 跳转到编辑影集页面
+     * @param $albumId
+     */
 	public function edit($albumId){
+        // check the session.
+        $this->checkIfLogin();
+
 		$Photo = D('Photo');
 		$photosArray = array();
 		$photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
@@ -131,10 +138,8 @@ class AlbumAction extends Action{
 				}
 			}
 		}
-
 		
 		// dump($photosArray);
-
         $this->photosArray = $photosArray;
 		$this->photoList = $photoList;
 //		$this->albumId = date('Y-m-d', strtotime('2014-11-19 10:35:47'));
@@ -142,29 +147,35 @@ class AlbumAction extends Action{
 		$this->display();
 	}
 
+    /**
+     * 影集列表页面
+     */
 	public function albumlist(){
-		$userid = session('userid');
-		if (empty($userid)) {
-			$this->redirect("User/login");
-		}
+        // check the session.
+		$this->checkIfLogin();
 
-		// $this->checkIfLogin();
-		dump(session('username'));
-		dump(session('userid'));
-		$user_id = 1;
+        // get user id from session.
+		$user_id = session('userid');
 
-		// find user information
+		// find user information.
 		$User = M('User');
 		$this->userinfo = $User->find($user_id);
 
-		// find album information
+		// find album information.
 		$Album = D('Album');
 		$this->albums = $Album->where('userId = '.$user_id)->relation(true)->order('time desc')->select();
 		//dump($this->albums);
 		$this->display();
 	}
 
+    /**
+     * 删除影集
+     * @param $albumId
+     */
 	public function delete($albumId){
+        // check the session.
+        $this->checkIfLogin();
+
 		$Album = M('Album');
 		$result = $Album->delete($albumId);
 		if ($result) {
@@ -174,7 +185,11 @@ class AlbumAction extends Action{
 		}
 	}
 
-	public function publis($albumId){
+    /**
+     * 发布影集
+     * @param $albumId
+     */
+	public function publish($albumId){
 
 		if ($albumId) {
 			$Album = M('Album');

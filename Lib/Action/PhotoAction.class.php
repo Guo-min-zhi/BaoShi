@@ -4,7 +4,22 @@ require 'iptc.php';
 
 class PhotoAction extends Action{
 
+    /**
+     * 检查是否有session存在，不存在，则重定向到登录页
+     */
+    public function checkIfLogin(){
+        $userid = session('userid');
+        if (empty($userid)) {
+            $this->redirect("User/login");
+        }
+    }
+    /**
+     * 照片展示列表
+     * @param $albumId
+     */
 	public function photolist($albumId){
+        // check the session.
+        $this->checkIfLogin();
 
 		$Photo = D("Photo");
         $Album = M('Album');
@@ -18,7 +33,15 @@ class PhotoAction extends Action{
 		$this->display();
 	}
 
+    /**
+     * 跳转到查看照片页面
+     * @param $albumId
+     * @param $pid
+     */
 	public function view($albumId, $pid){
+        // check the session.
+        $this->checkIfLogin();
+
 		$Photo = D('Photo');
         $allPhotos = $Photo->field('id')->where("album_id = ".$albumId)->order('id')->select();
         for($i=0; $i<sizeof($allPhotos); $i++){
@@ -38,7 +61,9 @@ class PhotoAction extends Action{
             }
         }
 
+        // next photo id
         $this->next = $allPhotos[$next]['id'];
+        // pre photo id
         $this->pre = $allPhotos[$pre]["id"];
         $this->albumId = $albumId;
 		$this->photo = $Photo->relation(true)->find($pid);
@@ -54,6 +79,9 @@ class PhotoAction extends Action{
      * @param $desc
      */
     function addDesc($photoId, $desc){
+        // check the session.
+        $this->checkIfLogin();
+
         $Photo = M('Photo');
         //$photo = $Photo->find($photoId);
         // Save photo description to database.
@@ -67,8 +95,6 @@ class PhotoAction extends Action{
             $iptcPhoto->set(IPTC_CAPTION, $desc);
             $iptcPhoto->write();
         }
-
-
         $this->ajaxReturn($photoId, 'add desc success', 1);
     }
 
@@ -77,6 +103,9 @@ class PhotoAction extends Action{
      * @param $photoId
      */
     function delete($photoId){
+        // check the session.
+        $this->checkIfLogin();
+
         $Photo = M('Photo');
         $Photo->delete($photoId);
     }

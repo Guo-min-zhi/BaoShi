@@ -18,8 +18,7 @@ class UserAction extends Action{
                 session('username', $username);
                 session('userid', $user['id']);
                 $this->redirect("Album/albumlist");
-			}
-			else{
+			} else {
 //				echo "login fail!";
                 $this->redirect("User/login");
 			}
