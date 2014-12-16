@@ -24,6 +24,21 @@
 		<div class="page-header">
 			<h2>照片信息</h2>
 		</div>
+        <p>
+            <volist name="photo.tags" id="tag">
+                <span class="label label-info img-tag">{$tag.name}</span>
+            </volist>
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-calendar"></span> {$photo.time}
+        </p>
+        <if condition="$photo.description neq null">
+            <p class="bg-info bg-info-desc">
+                <strong>照片描述：</strong>{$photo.description}
+            </p>
+        </if>
+
+
 		<div class="caption">
 			<h3>{$photo.name}</h3>
 		</div>

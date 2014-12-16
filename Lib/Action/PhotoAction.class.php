@@ -44,7 +44,7 @@ class PhotoAction extends Action{
         $this->pre = $allPhotos[$pre]["id"];
         $this->albumId = $albumId;
 		$this->photo = $Photo->relation(true)->find($pid);
-        // dump($this->photo);
+//        dump($this->photo);
         // $path = $this->photo['path'];
 //        $exif = exif_read_data($path, 0, true);
 //        dump($path);
@@ -73,6 +73,10 @@ class PhotoAction extends Action{
         $this->ajaxReturn($photoId, 'add desc success', 1);
     }
 
+    /**
+     * 删除照片
+     * @param $photoId
+     */
     function delete($photoId){
         $Photo = M('Photo');
         $Photo->delete($photoId);

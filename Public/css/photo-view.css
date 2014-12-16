@@ -22,3 +22,10 @@
 .photo-pre-btn:hover{
     opacity: 0.8;
 }
+.img-tag{
+    display: inline-block;
+    margin-right: 5px;
+}
+.bg-info-desc{
+    padding: 15px;
+}
