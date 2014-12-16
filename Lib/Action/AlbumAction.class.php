@@ -33,6 +33,19 @@ class AlbumAction extends Action{
 		$this->display();
 	}
 
+	// public function create(){
+	// 	$filename = "Public/Uploads/545aca54b4861.jpg";
+	// 	$this->name = $filename;
+	// 	if (file_exists($filename)) {
+	// 		$exif = exif_read_data($filename,  0, true);
+	// 		if (array_key_exists("EXIF", $exif) && array_key_exists("DateTimeOriginal", $exif["EXIF"])) {
+	// 			$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
+	// 			dump($dateOriginal);
+	// 		}
+	// 	}
+	// 	$this->display();
+	// }
+
 	public function upload(){
 
 		//=============================================================
@@ -56,8 +69,20 @@ class AlbumAction extends Action{
 	    	$info = $upload->getUploadFileInfo();
             // 将图片路径、时间存入数据库
             $one['time'] = date("Y-m-d H:i:s");
-            $one['path'] = substr($info[0]['savepath'].$info[0]['savename'], 1);
-            $one['album_id'] = $_POST['albumId']; 
+            $photoPath = substr($info[0]['savepath'].$info[0]['savename'], 1);   //Example: /Public/Uploads/546c033110bfc.jpg
+            $one['path'] = $photoPath;
+            $one['album_id'] = $_POST['albumId'];
+
+            // get the photo's take time from exif data.
+            $photoAbsPath = substr($photoPath, 1);     //Example: Public/Uploads/546c033110bfc.jpg
+            if (file_exists($photoAbsPath)) {
+            	$exif = exif_read_data($photoAbsPath, 0, true);
+            	if (array_key_exists("EXIF", $exif) && array_key_exists("DateTimeOriginal", $exif["EXIF"])) {
+            		$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
+            		$one['take_time'] = $dateOriginal;
+            	}
+            } 
+            
             $result = $Photo->add($one);
 
             $photo = $Photo->find($result);
@@ -73,7 +98,11 @@ class AlbumAction extends Action{
 		$photosArray = array();
 		$photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
 		foreach ($photoList as $photo) {
-			$createDate = date('Y-m-d', strtotime($photo['time']));
+			if (empty($photo['take_time'])) {
+				$createDate = "没有拍摄时间";
+			}else{
+				$createDate = date('Y-m-d', strtotime($photo['take_time']));
+			}
 			if (!array_key_exists($createDate, $photosArray)) {
 				$photosArray[$createDate] = array();
 				$photosArray[$createDate]['photos'] = array();

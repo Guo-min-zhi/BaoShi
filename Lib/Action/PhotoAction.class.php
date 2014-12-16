@@ -1,7 +1,5 @@
 <?php
 
-include 'EXIF.php';
-
 class PhotoAction extends Action{
 
 
@@ -44,15 +42,7 @@ class PhotoAction extends Action{
         $this->pre = $allPhotos[$pre]["id"];
         $this->albumId = $albumId;
 		$this->photo = $Photo->relation(true)->find($pid);
-        // dump($this->photo);
-        // $path = $this->photo['path'];
-//        $exif = exif_read_data($path, 0, true);
-//        dump($path);
-
-//        $this->name = $exif[$path][FileName];
-
-        // $data = get_EXIF_JPEG("../..".$path);
-        // dump($data);
+        
 
 		// dump($this->photo);
 		layout(false);
