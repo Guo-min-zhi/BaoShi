@@ -6,7 +6,8 @@
 <div class="container">
 	
 	<div class="page-header">
-		<h2>{$album.name}</h2>
+		<h1>{$album.name}<small>{$album.description}</small></h1>
+        <p><span class="label label-primary">{$album.theme}</span></p>
 		<a type="button" class="btn btn-default " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
 		<a type="button" class="btn btn-default " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
 		<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>

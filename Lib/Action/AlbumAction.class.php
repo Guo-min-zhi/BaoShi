@@ -1,5 +1,7 @@
 <?php
 
+require 'iptc.php';
+
 class AlbumAction extends Action{
 
     /**
@@ -34,15 +36,22 @@ class AlbumAction extends Action{
 	}
 
 	// public function create(){
-	// 	$filename = "Public/Uploads/545aca54b4861.jpg";
+	// 	$filename = "Public/Uploads/2014.jpg";
 	// 	$this->name = $filename;
 	// 	if (file_exists($filename)) {
-	// 		$exif = exif_read_data($filename,  0, true);
-	// 		if (array_key_exists("EXIF", $exif) && array_key_exists("DateTimeOriginal", $exif["EXIF"])) {
-	// 			$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
-	// 			dump($dateOriginal);
-	// 		}
+	// 		// $exif = exif_read_data($filename,  0, true);
+	// 		// if (array_key_exists("EXIF", $exif) && array_key_exists("DateTimeOriginal", $exif["EXIF"])) {
+	// 		// 	$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
+	// 		// 	dump($dateOriginal);
+	// 		// }
+	// 		$objIPTC = new iptc($filename);
+	// 		//set title
+	// 		$objIPTC->set(IPTC_COPYRIGHT_STRING,"Here goes the new data");
+	// 		$objIPTC->set(IPTC_CAPTION,"这里是描述");
+	// 		$objIPTC->write();
+	// 		dump($objIPTC->get(IPTC_CAPTION));
 	// 	}
+
 	// 	$this->display();
 	// }
 
