@@ -2,6 +2,10 @@
 
 class TagAction extends Action{
 
+    /**
+     * 创建标签
+     * @param $tagName
+     */
 	public function create($tagName){
 		$Tag = M('Tag');
 		$condition['name'] = $tagName;
@@ -16,6 +20,11 @@ class TagAction extends Action{
 		}
 	}
 
+    /**
+     * 标签和照片关联
+     * @param $photoId
+     * @param $tagId
+     */
 	public function photoAddTag($photoId, $tagId){
 		$Tagphoto = M('Tagphoto');
 		$condition['tagId'] = $tagId;
@@ -28,6 +37,11 @@ class TagAction extends Action{
 		}
 	}
 
+    /**
+     * 取消照片和标签的关联
+     * @param $photoId
+     * @param $tagId
+     */
 	public function photoDeleteTag($photoId, $tagId){
 		$Tagphoto = M('Tagphoto');
 		$condition['tagId'] = $tagId;

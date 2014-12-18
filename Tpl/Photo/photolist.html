@@ -6,18 +6,21 @@
 <div class="container">
 	
 	<div class="page-header">
-		<h1>{$album.name}<small>{$album.description}</small></h1>
+		<h1>{$album.name}</h1>
         <p><span class="label label-primary">{$album.theme}</span></p>
-		<a type="button" class="btn btn-default " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
-		<a type="button" class="btn btn-default " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
-		<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
+        <p><strong>影集描述：</strong>{$album.description}</p>
 		<!-- <div class="btn-group pull-right">
 			<a type="button" class="btn btn-default" href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
 			<a type="button" class="btn btn-default" href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
 			<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
 		</div> -->
-	</div>
-	
+    </div>
+    <p>
+        <a type="button" class="btn btn-info " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
+        <a type="button" class="btn btn-info " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
+        <a type="button" class="btn btn-info" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
+    </p>
+
 	<div class="well" id="masonry">
 			<foreach name="photos" item="photo">
 				<!-- <div class="col-xs-6 col-md-4"> -->

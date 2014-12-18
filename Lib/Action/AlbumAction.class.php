@@ -139,7 +139,7 @@ class AlbumAction extends Action{
 			}
 		}
 		
-		// dump($photosArray);
+//		dump($photosArray);
         $this->photosArray = $photosArray;
 		$this->photoList = $photoList;
 //		$this->albumId = date('Y-m-d', strtotime('2014-11-19 10:35:47'));
