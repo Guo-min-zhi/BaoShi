@@ -18,7 +18,7 @@
     <p>
         <a type="button" class="btn btn-info " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
         <a type="button" class="btn btn-info " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
-        <a type="button" class="btn btn-info" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
+        <a type="button" class="btn btn-info" href="{:U("Album/publish?albumId=$albumId")}">发布影集</a>
     </p>
 
 	<div class="well" id="masonry">
@@ -46,8 +46,8 @@
                                     <textarea class="form-control" rows="2" placeholder="添加照片描述" name="desc">{$photo.description}</textarea>
                                 </p>
                                 <p>
-                                    <input type="submit" class="btn btn-primary btn-xs" value="确定"></input>
-                                    <input type="reset" class="btn btn-default btn-xs" value="清空"></input>
+                                    <input type="submit" class="btn btn-primary btn-xs" value="保存"></input>
+                                    <!--<input type="reset" class="btn btn-default btn-xs" value="清空"></input>-->
                                 </p>
                                 <p>
                                     <a href="javascript:void(0);" class="icon-remove-photo">

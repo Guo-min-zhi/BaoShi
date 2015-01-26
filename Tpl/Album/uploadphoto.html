@@ -11,6 +11,7 @@
 	</div>
     <div class="upload-button-wrapper">
         <input type="file" name="file_upload" id="file_upload"/>
+        <span class="glyphicon glyphicon-exclamation-sign">还能够上传<span class="label label-warning uploadNumber">20</span>张</span>
     </div>
     <div class="upload-container" id="upload-container-queue">
         <!-- <div class="photo-block">
@@ -84,6 +85,10 @@
                     $("#"+fileId).find('img').attr('src', photoPath);
                     $("#"+fileId).find('img').attr('pid', photoId);
                     photoCount-=1;
+
+                    $num = $(".uploadNumber").text();
+                    $num = parseInt($num);
+                    $(".uploadNumber").text($num-1);
                     $("#photoNumber").text(photoCount);
                 }
 	        },

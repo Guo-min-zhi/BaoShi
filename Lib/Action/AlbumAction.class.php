@@ -196,8 +196,31 @@ class AlbumAction extends Action{
 			$Album->find($albumId);
 			$Album->publish = 1;
 			$Album->save();
+
+            $this->success("发布成功", '/index.php/Album/show/albumId/'.$albumId);
 		}
 	}
+
+    /**
+     * 影集发布成功后的展示页面
+     * @param string $albumId
+     * @return mixed|void
+     */
+    public function show($albumId){
+        if(!$albumId)
+            return;
+
+        $Album = M('Album');
+        $album = $Album->find($albumId);
+        $this->album = $album;
+        $this->albumId = $albumId;
+
+        $Photo = D('Photo');
+        $photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
+        $this->photos = $photoList;
+//        dump($photoList);
+        $this->display();
+    }
 
 }
 

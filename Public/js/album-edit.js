@@ -1,29 +1,38 @@
 (function($) {
 
 	var currentTag = null;
+    var clickButton = null;
+
+    $('#tagCreate').on('show.bs.modal', function (event) {
+        clickButton = $(event.relatedTarget); // Button that triggered the modal
+    });
 
 	// 确认创建标签
 	$("#createTagBtn").click(function () {
-		$('#tagCreate').modal('hide');
-		var tagName = $("#inputTagName").val();
+        var tagName = $("#inputTagName").val();
+        if(tagName){
+            $('#tagCreate').modal('hide');
 
-		$.ajax({
-			method: 'GET',
-			url: '/index.php/Tag/create',
-			data: {
-				'tagName': tagName
-			},
-			success: function(data){
-				if (data.status == 1) {
-					$("#inputTagName").val('');
-					var html = '<li class="scene-add"><div class="scene-item" tagid="'+data.data.id+'"><p><span class="glyphicon glyphicon-tag"></span>'+data.data.name+'</p></div></li>';
-					$(".scene-list").append(html);
-				};
-			},
-			error: function(data){
-				alert("something error, retry.");
-			}
-		});
+            $.ajax({
+                method: 'GET',
+                url: '/index.php/Tag/create',
+                data: {
+                    'tagName': tagName
+                },
+                success: function(data){
+                    if (data.status == 1) {
+                        $("#inputTagName").val('');
+                        var html = '<li class="scene-add"><div class="scene-item" tagid="'+data.data.id+'"><p><span class="glyphicon glyphicon-tag"></span>'+data.data.name+'</p></div></li>';
+                        $(clickButton).next().append(html);
+                        clickButton = null;
+                        //$(".scene-list").append(html);
+                    };
+                },
+                error: function(data){
+                    alert("something error, retry.");
+                }
+            });
+        }
 	});
 
 	// 照片拖拽操作

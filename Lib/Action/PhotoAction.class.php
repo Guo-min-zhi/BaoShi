@@ -43,6 +43,7 @@ class PhotoAction extends Action{
         $this->checkIfLogin();
 
 		$Photo = D('Photo');
+        // find all photos according to the album id.
         $allPhotos = $Photo->field('id')->where("album_id = ".$albumId)->order('id')->select();
         for($i=0; $i<sizeof($allPhotos); $i++){
             $one = $allPhotos[$i];
@@ -58,9 +59,13 @@ class PhotoAction extends Action{
                     $pre = $i - 1;
                     $next = $i + 1;
                 }
+                break;
             }
         }
 
+        $this->currentIndex = $i + 1;
+        // the total number of photos.
+        $this->totalSize = sizeof($allPhotos);
         // next photo id
         $this->next = $allPhotos[$next]['id'];
         // pre photo id
@@ -83,7 +88,7 @@ class PhotoAction extends Action{
         $this->checkIfLogin();
 
         $Photo = M('Photo');
-        //$photo = $Photo->find($photoId);
+        $Photo->find($photoId);
         // Save photo description to database.
         $Photo->description = $desc;
         $Photo->save();

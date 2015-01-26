@@ -1,0 +1,35 @@
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>{$album.name}</h1>
+        <p><span class="label label-primary">{$album.theme}</span></p>
+        <p><strong>影集描述：</strong>{$album.description}</p>
+    </div>
+
+        <foreach name="photos" item="photo">
+            <div class="col-xs-6 col-md-6">
+                <div class="thumbnail" pid="{$photo.id}">
+                    <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}" target="_blank">
+                        <img data-src="holder.js/100%x180" src="{$photo.path}" alt="...">
+                    </a>
+                    <div class="caption">
+                        <p>
+                            <volist name="photo.tags" id="tag">
+                                <span class="label label-info img-tag">{$tag.name}</span>
+                            </volist>
+                        </p>
+                        <p>
+                            描述：{$photo.description}
+                        </p>
+                        <p>
+                            拍摄时间：{$photo.take_time}
+                        </p>
+                        <p>
+                            上传时间：{$photo.time}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </foreach>
+</div>
