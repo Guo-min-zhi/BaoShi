@@ -25,6 +25,20 @@ class UserAction extends Action{
 		}
 	}
 
+    /**
+     * 移动端登陆逻辑
+     */
+    public function loginForMobile(){
+        $username = $_GET["username"];
+        $password = $_GET["password"];
+        $user = $this->hasUser($username, $password);
+        if($user != null){
+            $this->ajaxReturn($user, "login success", 1);
+        }else{
+            $this->ajaxReturn($user, "login fail", 0);
+        }
+    }
+
     public function logout(){
         session(null);
         $this->redirect("User/login");
@@ -65,6 +79,30 @@ class UserAction extends Action{
 			}
 		}
 	}
+
+    /**
+     * 移动端的注册逻辑
+     */
+    public function registerForMobile(){
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $User = M("User");
+        $userByName = $User->where('username = "'.$username.'"')->find();
+        $userByEmail = $User->where('email = "'.$email.'"')->find();
+        if(empty($userByName) and empty($userByEmail)){
+            $data["username"] = $username;
+            $data["password"] = $_POST["password"];
+            $data["email"] = $email;
+            $result = $User->add($data);
+            if($result){
+                $this->ajaxReturn($result, "register success", 1);
+            }else{
+                $this->ajaxReturn($result, "register fail", 0);
+            }
+        }else{
+            $this->ajaxReturn("username or email is same", "register fail", 0);
+        }
+    }
 
 	/**
 	 *	用户列表
