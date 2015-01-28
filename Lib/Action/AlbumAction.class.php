@@ -88,7 +88,8 @@ class AlbumAction extends Action{
             $one['time'] = date("Y-m-d H:i:s");
             $photoPath = substr($info[0]['savepath'].$info[0]['savename'], 1);   //Example: /Public/Uploads/546c033110bfc.jpg
             $one['path'] = $photoPath;
-            $one['album_id'] = $_POST['albumId'];
+            $albumId = $_POST['albumId'];
+            $one['album_id'] = $albumId;
 
             // get the photo's take time from exif data.
             $photoAbsPath = substr($photoPath, 1);     //Example: Public/Uploads/546c033110bfc.jpg
@@ -167,6 +168,28 @@ class AlbumAction extends Action{
 		//dump($this->albums);
 		$this->display();
 	}
+
+    public function listForMobile($userId){
+        if(empty($userId)){
+            $this->ajaxReturn("user id is null", "get album list fail", 0);
+        }else{
+            // find user information.
+            //$User = M('User');
+            //$this->userinfo = $User->find($userId);
+
+            // find album information.
+            $Album = D('Album');
+            $albums = $Album->where('userId = '.$userId)->relation(true)->order('time desc')->select();
+            $albumsArray = array();
+            foreach($albums as $album){
+                if(count($album['photos']) > 0 ){
+                    $album['cover'] = $album['photos'][0]['path'];
+                    array_push($albumsArray, $album);
+                }
+            }
+            $this->ajaxReturn($albumsArray, "get album list success", 1);
+        }
+    }
 
     /**
      * 删除影集
