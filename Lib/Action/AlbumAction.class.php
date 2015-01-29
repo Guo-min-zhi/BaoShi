@@ -165,7 +165,8 @@ class AlbumAction extends Action{
 		// find album information.
 		$Album = D('Album');
 		$this->albums = $Album->where('userId = '.$user_id)->relation(true)->order('time desc')->select();
-		//dump($this->albums);
+
+//		dump($this->albums);
 		$this->display();
 	}
 
@@ -179,9 +180,15 @@ class AlbumAction extends Action{
 
             // find album information.
             $Album = D('Album');
-            $albums = $Album->where('userId = '.$userId)->relation(true)->order('time desc')->select();
+            $Photo = D('Photo');
+            // find all albums
+            $albums = $Album->where('userId = '.$userId)->order('time desc')->select();
             $albumsArray = array();
             foreach($albums as $album){
+                // find all photos according to album id.
+                $photoList = $Photo->where("album_id = ".$album['id'])->order('time asc')->relation(true)->select();
+                $album['photos'] = $photoList;
+                // set album cover.
                 if(count($album['photos']) > 0 ){
                     $album['cover'] = $album['photos'][0]['path'];
                     array_push($albumsArray, $album);

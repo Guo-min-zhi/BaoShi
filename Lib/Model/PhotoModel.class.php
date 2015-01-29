@@ -4,7 +4,7 @@
 * 
 */
 class PhotoModel extends RelationModel{
-	
+
 	protected $_link = array(
 		"tags" => array(
 			'mapping_type' => MANY_TO_MANY,

@@ -73,7 +73,7 @@ class PhotoAction extends Action{
         $this->albumId = $albumId;
 		$this->photo = $Photo->relation(true)->find($pid);
 
-		// dump($this->photo);
+//		dump($this->photo);
 		layout(false);
 		$this->display();
 	}
