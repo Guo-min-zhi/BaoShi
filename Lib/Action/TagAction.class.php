@@ -1,5 +1,7 @@
 <?php
 
+require 'iptc.php';
+
 class TagAction extends Action{
 
     /**
@@ -31,6 +33,11 @@ class TagAction extends Action{
 		$condition['photoId'] = $photoId;
 		$id = $Tagphoto->add($condition);
 		if ($id != false) {
+
+            // Save photo tag to photo self.
+            $this->operateTag($photoId, $tagId, 1);
+            // end save
+
 			$this->ajaxReturn($id, '关联成功', 1);
 		} else {
 			$this->ajaxReturn($id, '关联失败', 0);
@@ -48,11 +55,50 @@ class TagAction extends Action{
 		$condition['photoId'] = $photoId;
 		$id = $Tagphoto->where($condition)->delete();
 		if ($id != false) {
+
+            // delete photo tag from photo.
+            $this->operateTag($photoId, $tagId, 2);
+            // end delete
+
 			$this->ajaxReturn($id, '解除关联成功', 1);
 		} else {
 			$this->ajaxReturn($id, '解除关联失败', 0);
 		}
 	}
+
+    private function operateTag($photoId, $tagId, $operation){
+        $Tag = M('Tag');
+        $Tag->find($tagId);
+        $Photo = M('Photo');
+        $Photo->find($photoId);
+        $photoAbsPath = substr($Photo->path, 1);
+        if (file_exists($photoAbsPath)) {
+            $iptcPhoto = new iptc($photoAbsPath);
+            $tagOriginal = $iptcPhoto->get(IPTC_KEYWORDS);
+            $tagArray = explode(",", trim($tagOriginal));
+
+            if($operation == 1){
+                // add tag
+                if(empty($tagOriginal)){
+                    $tagArray[0] = $Tag->name;
+                }else{
+                    array_push($tagArray, $Tag->name);
+                }
+            }elseif($operation == 2){
+                // delete tag
+                for($i=0; $i<sizeof($tagArray); $i++){
+                    if($tagArray[$i] == $Tag->name){
+                        array_splice($tagArray, $i, 1);
+                        break;
+                    }
+                }
+            }
+            $newTag = join(",", $tagArray);
+            $iptcPhoto->set(IPTC_KEYWORDS, $newTag);
+            $iptcPhoto->write();
+        }
+
+    }
 
 
 }

@@ -89,17 +89,22 @@ class PhotoAction extends Action{
 
         $Photo = M('Photo');
         $Photo->find($photoId);
+        $path = $Photo->path;
         // Save photo description to database.
         $Photo->description = $desc;
         $Photo->save();
 
+        Log::write("after write.....:".$path, "INFO");
         // Save photo description to photo self.
-        $photoAbsPath = substr($Photo->path, 1);
+        $photoAbsPath = substr($path, 1);
         if (file_exists($photoAbsPath)) {
+            Log::write("begin write", "INFO");
             $iptcPhoto = new iptc($photoAbsPath);
             $iptcPhoto->set(IPTC_CAPTION, $desc);
             $iptcPhoto->write();
+            Log::write("Write description info to photo '".$photoId."', dsc = '".$desc."'", "INFO");
         }
+        Log::write("after write-======:".$photoAbsPath, "INFO");
         $this->ajaxReturn($photoId, 'add desc success', 1);
     }
 

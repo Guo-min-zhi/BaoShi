@@ -17,6 +17,9 @@ class UserAction extends Action{
                 // save user info into session;
                 session('username', $username);
                 session('userid', $user['id']);
+
+                Log::write("User '".$username."' have login from web.", "INFO");
+
                 $this->redirect("Album/albumlist");
 			} else {
 //				echo "login fail!";
@@ -33,6 +36,7 @@ class UserAction extends Action{
         $password = $_GET["password"];
         $user = $this->hasUser($username, $password);
         if($user != null){
+            Log::write("User '".$username."' have login from mobile.", "INFO");
             $this->ajaxReturn($user, "login success", 1);
         }else{
             $this->ajaxReturn($user, "login fail", 0);
@@ -68,6 +72,8 @@ class UserAction extends Action{
 				$result = $User->add();
 				if($result){
 //					echo "add success";
+
+                    Log::write("User '".$_POST['username']."' register.", "INFO");
                     session(array('name'=>$_POST["username"], 'expire'=>3600));
                     $this->redirect("Album/albumlist");
 				}else{
