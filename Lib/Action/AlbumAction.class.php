@@ -57,6 +57,11 @@ class AlbumAction extends Action{
      * @param $albumId
      */
 	public function uploadphoto($albumId){
+
+        $Photo = M('Photo');
+        $photoNumber = $Photo->where('album_id = '.$albumId)->count();
+
+        $this->num = 20 - $photoNumber;
 		$this->albumId = $albumId;
 		$this->display();
 	}

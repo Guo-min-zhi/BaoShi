@@ -11,7 +11,7 @@
 	</div>
     <div class="upload-button-wrapper">
         <input type="file" name="file_upload" id="file_upload"/>
-        <span class="glyphicon glyphicon-exclamation-sign">还能够上传<span class="label label-warning uploadNumber">20</span>张</span>
+        <span class="glyphicon glyphicon-exclamation-sign">还能够上传<span class="label label-warning uploadNumber">{$num}</span>张</span>
     </div>
     <div class="upload-container" id="upload-container-queue">
         <!-- <div class="photo-block">
@@ -36,7 +36,7 @@
 <script>
 	(function($){
 
-        var photoCount = 20;
+        var photoCount = {$num};
 
 		$('#file_upload').uploadify({
 			'auto': true,
@@ -44,8 +44,8 @@
 			'buttonText': '点击上传照片',
             'buttonClass': 'btn btn-success',
 			'removeCompleted': false,
-            'queueSizeLimit' : 20,    //上传队列里最多有20张照片
-            'uploadLimit' : 20,       //一共可以上传20张照片
+            'queueSizeLimit' : photoCount,    //上传队列里最多有20张照片
+            'uploadLimit' : photoCount,       //一共可以上传20张照片
             'queueID': 'upload-container-queue',
             'fileExt': '*.jpg;*.gif,*.png',
 			'formData': {
