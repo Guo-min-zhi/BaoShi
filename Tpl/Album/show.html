@@ -3,7 +3,11 @@
 
     <div class="page-header">
         <h1>{$album.name}</h1>
-        <p><span class="label label-primary">{$album.theme}</span></p>
+        <p>
+            <foreach name="tags" item="tag">
+                <span class="label label-primary">{$tag}</span>
+            </foreach>
+        </p>
         <p><strong>影集描述：</strong>{$album.description}</p>
     </div>
 

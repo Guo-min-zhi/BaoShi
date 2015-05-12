@@ -7,7 +7,11 @@
 	
 	<div class="page-header">
 		<h1>{$album.name}</h1>
-        <p><span class="label label-primary">{$album.theme}</span></p>
+        <p>
+            <foreach name="tags" item="tag">
+                <span class="label label-primary">{$tag}</span>
+            </foreach>
+        </p>
         <p><strong>影集描述：</strong>{$album.description}</p>
 		<!-- <div class="btn-group pull-right">
 			<a type="button" class="btn btn-default" href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>

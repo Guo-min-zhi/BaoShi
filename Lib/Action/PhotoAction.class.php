@@ -26,6 +26,7 @@ class PhotoAction extends Action{
 
         $album = $Album->find($albumId);
 
+        $this->tags = explode( ",",$album["theme"]);
         $this->album = $album;
         $this->albumId = $albumId;
 		$this->photos = $Photo->where("album_id = ".$albumId)->relation(true)->select();

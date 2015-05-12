@@ -268,11 +268,12 @@ class AlbumAction extends Action{
         $album = $Album->find($albumId);
         $this->album = $album;
         $this->albumId = $albumId;
+        $this->tags = explode( ",",$album["theme"]);
 
         $Photo = D('Photo');
         $photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
         $this->photos = $photoList;
-//        dump($photoList);
+//        dump(explode( ",",$tags));
         $this->display();
     }
 
