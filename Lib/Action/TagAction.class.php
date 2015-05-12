@@ -11,6 +11,8 @@ class TagAction extends Action{
 	public function create($tagName){
 		$Tag = M('Tag');
 		$condition['name'] = $tagName;
+
+        // 标签是唯一存储的，先查看标签库中有没有要创建的标签；
 		$find = $Tag->where($condition)->find();
 
 		if (!$find) {
@@ -66,6 +68,12 @@ class TagAction extends Action{
 		}
 	}
 
+    /**
+     * 将照片和标签关联
+     * @param $photoId
+     * @param $tagId
+     * @param $operation
+     */
     private function operateTag($photoId, $tagId, $operation){
         $Tag = M('Tag');
         $Tag->find($tagId);

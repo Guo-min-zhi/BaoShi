@@ -104,9 +104,28 @@ class AlbumAction extends Action{
             		$dateOriginal = $exif['EXIF']['DateTimeOriginal'];
             		$one['take_time'] = $dateOriginal;
             	}
-            } 
+            }
             // return the photo id.
             $result = $Photo->add($one);
+
+            // Get the album name, theme, and username of this album, then set them in the photo iptc.
+            $Album = M('Album');
+            $Album->find($albumId);
+            $albumName = $Album->name;
+            $albumTheme = $Album->theme;
+            $userId = session('userid');
+            $User = M('User');
+            $User->find($userId);
+            $userName = $User->username;
+            $iptcPhoto = new iptc($photoAbsPath);
+            $iptcPhoto->set(IPTC_LOCAL_CAPTION, $albumName);
+            $iptcPhoto->set(IPTC_CATEGORY, $albumTheme);
+            $iptcPhoto->set(IPTC_COPYRIGHT_STRING, $userName);
+            $iptcPhoto->write();
+            Log::write("Write album name to photo '".$result."', album name = '".$albumName."'", "INFO");
+            Log::write("Write album theme to photo '".$result."', album theme = '".$albumTheme."'", "INFO");
+            Log::write("Write username to photo '".$result."', username = '".$userName."'", "INFO");
+
             // get the photo according above photo id.
             $photo = $Photo->find($result);
             $this->ajaxReturn($photo, 'upload success', 1);

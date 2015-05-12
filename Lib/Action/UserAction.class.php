@@ -132,6 +132,44 @@ class UserAction extends Action{
 			$this->error('删除失败，无法获得用户ID.');
 		}
 	}
+    /**
+     * 增加、单向同步用户
+     * to: Wang Fei
+     */
+    public function add(){
+        if($this->isPost()){
+            $User = M("User");
+            if($User->create()){
+                $result = $User->add();
+                if($result){
+                    Log::write("User '".$_POST['username']."' add successful.", "INFO");
+                    $this->ajaxReturn($_POST['username'], "add successful", 1);
+                }else{
+                    $this->ajaxReturn($_POST['username'], "add fail", 0);
+                }
+            }else{
+                $this->ajaxReturn("add fail", "add fail", 0);
+            }
+        } else {
+            $this->ajaxReturn("add fail", "not post method", 0);
+        }
+
+    }
+    /**
+     *	根据用户名称删除用户
+     *  to: Wang Fei
+     */
+    public function delete($username){
+        if($username != null){
+            $User = M('User');
+            $condition['username'] = $username;
+            $User->where($condition)->delete();
+            Log::write("delete user according username=".$username, "INFO");
+            $this->ajaxReturn($username,"delete successful.",1);
+        }else{
+            $this->ajaxReturn($username,"delete fail.",0);
+        }
+    }
 
 	/**
 	 *	根据用户id获得用户
