@@ -8,20 +8,40 @@ class TagAction extends Action{
      * 创建标签
      * @param $tagName
      */
-	public function create($tagName){
+	public function create($tagId, $tagName, $country, $province){
 		$Tag = M('Tag');
 		$condition['name'] = $tagName;
+        $condition['country'] = $country;
+        $condition['province'] = $province;
 
-        // 标签是唯一存储的，先查看标签库中有没有要创建的标签；
-		$find = $Tag->where($condition)->find();
+        $isNew = false;
+        if($tagId == "" or $tagId == null){
+            $isNew = true;
+        }
+        $id = $Tag->where('id='.$tagId)->find();
+        if($id == null || $id == false){
+            $isNew = true;
+        }
+        if($isNew){
+            // add
+            $result = $Tag->add($condition);
+            if( $result!= false){
+                $condition['id'] = $result;
+                $this->ajaxReturn($condition, "创建地点成功", 1);
+            } else {
+                $this->ajaxReturn($condition, "创建地点失败", 0);
+            }
+        } else {
+            // modify
+            $result = $Tag->where('id='.$tagId)->save($condition);
+            if($result){
+                $this->ajaxReturn($condition, "修改地点成功", 1);
+            } else {
+                $this->ajaxReturn($condition, "修改地点失败", 0);
+            }
+        }
 
-		if (!$find) {
-			$id = $Tag->add($condition);
-			$condition['id'] = $id;
-			$this->ajaxReturn($condition, "新增成功", 1);
-		} else {
-			$this->ajaxReturn($find, "查找成功", 1);
-		}
+
 	}
 
     /**

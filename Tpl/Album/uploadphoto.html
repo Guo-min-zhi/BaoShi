@@ -9,9 +9,15 @@
 		<div class="step-wrapper step-second"></div>
 		<div class="step-wrapper step-third"></div>
 	</div>
-    <div class="upload-button-wrapper">
-        <input type="file" name="file_upload" id="file_upload"/>
-        <span class="glyphicon glyphicon-exclamation-sign">还能够上传<span class="label label-warning uploadNumber">{$num}</span>张</span>
+    <div class="row">
+        <div class="col-md-8 upload-button-wrapper">
+            <input type="file" name="file_upload" id="file_upload"/>
+            <span class="glyphicon glyphicon-exclamation-sign">还能够上传<span class="label label-warning uploadNumber">{$num}</span>张</span>
+        </div>
+        <div class="col-md-4 upload-button-wrapper">
+            <a class="btn btn-success btn-lg pull-right" href="{:U("Album/edit?albumId=$albumId")}" >下一步<span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+
     </div>
     <div class="upload-container" id="upload-container-queue">
         <!-- <div class="photo-block">
@@ -25,9 +31,6 @@
             <img src="/Public/img/photo.svg" class="img-rounded img-responsive" style="height: 110px; width: 110px;">
         </div> -->
 
-    </div>
-    <div class="upload-button-wrapper">
-        <a class="btn btn-success btn-lg pull-right" href="{:U("Album/edit?albumId=$albumId")}" >下一步<span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 
     <!--<button class="btn btn-default" id="satrtUploadBtn" onclick="$('#file_upload').uploadify('upload', '*');">上传</button>-->

@@ -8,11 +8,10 @@
 		<div class="step-wrapper step-third"></div>
 	</div>
 	<div class="edit-toolbar">
-		<a class="btn btn-info" href="{:U("Album/uploadphoto?albumId=$albumId")}">继续添加照片</a>
+		<a class="btn btn-info" href="{:U("Album/uploadphoto?albumId=$albumId")}">继续上传照片</a>
 		<a class="btn btn-info" href="{:U("Photo/photolist?albumId=$albumId")}">下一步</a>
 	</div>
 	<div class="upload-container">
-
         <volist name="photosArray" id="oneDay">
             <div class="row edit-one-scene">
                 <div class="col-md-3">
@@ -51,7 +50,7 @@
 
                     <div class="row scene-location">
                         <button type="button" class="btn btn-default btn-xs"  data-toggle="modal" data-target="#tagCreate" style="margin-bottom: 5px;">
-                            <span class="glyphicon glyphicon-plus"></span> 增加标签
+                            <span class="glyphicon glyphicon-plus"></span> 增加地点
                         </button>
                         <div class="scene-list">
                             <volist name="oneDay.tags" id="tag">
@@ -83,19 +82,22 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
-					<div class="modal-title">创建标签</div>
+					<div class="modal-title">添加地点</div>
 				</div>
 				<div class="modal-body">
-					<input type="text" class="form-control" id="inputTagName" placeholder="标签名称">
+                    <input type="hidden" class="form-control" id="inputTagId">
+					<input type="text" class="form-control" id="inputTagName" placeholder="地名或者景点名称"><p></p>
+                    <input type="text" class="form-control" id="inputCountry" placeholder="国别 (默认中国)"><p></p>
+                    <input type="text" class="form-control" id="inputProvince" placeholder="省份 (默认北京)"><p></p>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-success" role="alert">
                         <strong>提示：</strong>
-                        标签可以为地名、景点名称、照片风格等任何关键词，此关键词为您日后的搜索提供方便。
+                        添加地名或者景点名称
                     </div>
                 </div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="createTagBtn">创建</button>
+					<button type="button" class="btn btn-default" id="createTagBtn">保存</button>
 				</div>
 			</div>
 		</div>

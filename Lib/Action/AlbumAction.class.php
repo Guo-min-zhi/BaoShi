@@ -158,9 +158,18 @@ class AlbumAction extends Action{
 			array_push($photosArray[$createDate]['photos'], $photo);
 			$tags = $photo['tags'];
 			foreach ($tags as $tag) {
-				if (!array_key_exists($photosArray[$createDate]['tags'], $tag)) {
-					array_push($photosArray[$createDate]['tags'], $tag);
-				}
+                $new = true;
+                foreach($photosArray[$createDate]['tags'] as $arrayTag){
+                    if($arrayTag['id'] == $tag['id']){
+                        $new = false;
+                    }
+                }
+                if($new){
+                    array_push($photosArray[$createDate]['tags'], $tag);
+                }
+//				if (!array_key_exists($photosArray[$createDate]['tags'], $tag)) {
+//					array_push($photosArray[$createDate]['tags'], $tag);
+//				}
 			}
 		}
 		
