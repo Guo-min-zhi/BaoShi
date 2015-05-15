@@ -1,0 +1,9 @@
+.number-body{
+    padding: 10px;
+    border: 0px solid #eee;
+    border-right-width: 5px;
+    border-right-color: #1b809e;
+}
+.number-index{
+    font-size: 25px;
+}
