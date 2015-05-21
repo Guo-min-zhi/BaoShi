@@ -15,21 +15,21 @@ class TagAction extends Action{
         $condition['province'] = $province;
 
         $isNew = false;
+        // new tag is tag id is null.
         if($tagId == "" or $tagId == null){
             $isNew = true;
-        }
-        $id = $Tag->where('id='.$tagId)->find();
-        if($id == null || $id == false){
-            $isNew = true;
-        }
-        if($isNew){
-            // add
-            $result = $Tag->add($condition);
-            if( $result!= false){
-                $condition['id'] = $result;
-                $this->ajaxReturn($condition, "创建地点成功", 1);
-            } else {
-                $this->ajaxReturn($condition, "创建地点失败", 0);
+            $only = $Tag->where($condition)->find();
+            if($only != null){
+                $this->ajaxReturn($only, "创建地点成功", 1);
+            }else{
+                // add
+                $result = $Tag->add($condition);
+                if( $result!= false){
+                    $condition['id'] = $result;
+                    $this->ajaxReturn($condition, "创建地点成功", 1);
+                } else {
+                    $this->ajaxReturn($condition, "创建地点失败", 0);
+                }
             }
         } else {
             // modify
@@ -40,8 +40,6 @@ class TagAction extends Action{
                 $this->ajaxReturn($condition, "修改地点失败", 0);
             }
         }
-
-
 	}
 
     /**
@@ -53,17 +51,25 @@ class TagAction extends Action{
 		$Tagphoto = M('Tagphoto');
 		$condition['tagId'] = $tagId;
 		$condition['photoId'] = $photoId;
-		$id = $Tagphoto->add($condition);
-		if ($id != false) {
-
+        // only once.
+        $result = $Tagphoto->where('photoId='.$photoId)->find();
+        if($result == null){
+            $id = $Tagphoto->add($condition);
+            if ($id != false) {
+                // Save photo tag to photo self.
+                $this->operateTag($photoId, $tagId, 1);
+                // end save
+                $this->ajaxReturn($id, '关联成功', 1);
+            } else {
+                $this->ajaxReturn($id, '关联失败', 0);
+            }
+        } else {
+            $Tagphoto->where('photoId='.$photoId)->save($condition);
             // Save photo tag to photo self.
             $this->operateTag($photoId, $tagId, 1);
             // end save
-
-			$this->ajaxReturn($id, '关联成功', 1);
-		} else {
-			$this->ajaxReturn($id, '关联失败', 0);
-		}
+            $this->ajaxReturn($id, '关联成功', 1);
+        }
 	}
 
     /**
@@ -77,7 +83,6 @@ class TagAction extends Action{
 		$condition['photoId'] = $photoId;
 		$id = $Tagphoto->where($condition)->delete();
 		if ($id != false) {
-
             // delete photo tag from photo.
             $this->operateTag($photoId, $tagId, 2);
             // end delete

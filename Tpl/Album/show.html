@@ -5,10 +5,13 @@
     <div class="page-header">
         <h2>
             {$album.name}
+        </h2>
+        <p>
             <foreach name="tags" item="tag">
                 <span class="label label-primary">{$tag}</span>
             </foreach>
-        </h2>
+            {$album.time}
+        </p>
         <!--<p>
             <foreach name="tags" item="tag">
                 <span class="label label-primary">{$tag}</span>
@@ -17,7 +20,7 @@
         <p>{$album.description}</p>
     </div>
 
-        <volist name="photos" id="photo">
+        <volist name="photos" id="photo" key="k">
             <div class="col-xs-6 col-md-6">
                 <div class="thumbnail" pid="{$photo.id}">
                     <a href="{:U('Photo/view', 'albumId='.$albumId.'&pid='.$photo['id'])}" target="_blank">
@@ -33,9 +36,7 @@
                         </p>
                         <p>
                             <span class="number-body">
-
-                                    <strong class="number-index">{$key+1}</strong>/{$photos|count}
-
+                                    <strong class="number-index">{$k}</strong>/{$photos|count}
                             </span>
                             <span>
                                 {$photo.description}

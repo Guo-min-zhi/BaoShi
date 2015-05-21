@@ -281,6 +281,7 @@ class AlbumAction extends Action{
 
         $Photo = D('Photo');
         $photoList = $Photo->where('album_id = '.$albumId)->relation(true)->select();
+//        dump($photoList);
         $this->photos = $photoList;
 //        dump(explode( ",",$tags));
         $this->display();

@@ -2,26 +2,31 @@
 <load href='/Public/js/masonry.pkgd.js' />
 <load href='/Public/js/imagesloaded.pkgd.js' />
 <load href='/Public/js/photolist.js' />
+<load href='/Public/css/album-edit.css' />
 
 <div class="container">
-	
-	<div class="page-header">
-		<h1>{$album.name}</h1>
-        <p>
-            <foreach name="tags" item="tag">
-                <span class="label label-primary">{$tag}</span>
-            </foreach>
-        </p>
-        <p><strong>影集描述：</strong>{$album.description}</p>
-		<!-- <div class="btn-group pull-right">
-			<a type="button" class="btn btn-default" href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
-			<a type="button" class="btn btn-default" href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
-			<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>
-		</div> -->
+    <div class="public-head-steps">
+        <div class="step-wrapper step-first"></div>
+        <div class="step-wrapper step-second step-second-current"></div>
+        <div class="step-wrapper step-third"></div>
     </div>
+	<!--<div class="page-header">-->
+		<!--<h1>{$album.name}</h1>-->
+        <!--<p>-->
+            <!--<foreach name="tags" item="tag">-->
+                <!--<span class="label label-primary">{$tag}</span>-->
+            <!--</foreach>-->
+        <!--</p>-->
+        <!--<p><strong>影集描述：</strong>{$album.description}</p>-->
+		<!--&lt;!&ndash; <div class="btn-group pull-right">-->
+			<!--<a type="button" class="btn btn-default" href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>-->
+			<!--<a type="button" class="btn btn-default" href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>-->
+			<!--<a type="button" class="btn btn-default" href="{:U("Album/public?albumId=$albumId")}">发布影集</a>-->
+		<!--</div> &ndash;&gt;-->
+    <!--</div>-->
     <p>
-        <a type="button" class="btn btn-info " href="{:U("Album/uploadphoto?albumId=$albumId")}">添加照片</a>
-        <a type="button" class="btn btn-info " href="{:U("Album/edit?albumId=$albumId")}">整理照片</a>
+        <a type="button" class="btn btn-info " href="{:U("Album/uploadphoto?albumId=$albumId")}">继续上传照片</a>
+        <a type="button" class="btn btn-info " href="{:U("Album/edit?albumId=$albumId")}">继续整理照片</a>
         <a type="button" class="btn btn-info" href="{:U("Album/publish?albumId=$albumId")}">发布影集</a>
     </p>
 
