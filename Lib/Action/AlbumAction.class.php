@@ -220,10 +220,22 @@ class AlbumAction extends Action{
             foreach($albums as $album){
                 // find all photos according to album id.
                 $photoList = $Photo->where("album_id = ".$album['id'])->order('time asc')->relation(true)->select();
+
+//                $photoArray = array();
+//                foreach($photoList as $onePhoto){
+//                    $splits = explode("/", $onePhoto['path']);
+//                    $splits[3] = "m_".$splits[3];
+//                    $onePhoto['path'] = implode("/", $splits);
+//                    array_push($photoArray, $onePhoto);
+//                }
                 $album['photos'] = $photoList;
                 // set album cover.
                 if(count($album['photos']) > 0 ){
+                    // change cover photo to middle size photo.
                     $album['cover'] = $album['photos'][0]['path'];
+                    $tmp = explode("/", $album['cover']);
+                    $tmp[3] = "m_".$tmp[3];
+                    $album['cover'] = implode("/", $tmp);
                     array_push($albumsArray, $album);
                 }
             }

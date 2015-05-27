@@ -52,7 +52,7 @@
                             <form action="__URL__/addDesc" method="post">
                                 <input type="hidden" value="{$photo.id}" name="photoId">
                                 <p>
-                                    <textarea class="form-control" rows="2" placeholder="添加照片描述" name="desc">{$photo.description}</textarea>
+                                    <textarea class="form-control" rows="2" placeholder="添加照片描述" name="desc" maxlength="300">{$photo.description}</textarea>
                                 </p>
                                 <p>
                                     <input type="submit" class="btn btn-primary btn-xs" value="保存"></input>
@@ -73,3 +73,4 @@
 			</foreach>
 	</div>
 </div>
+<load href='/Public/js/jquery.validate.js' />

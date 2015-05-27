@@ -76,29 +76,44 @@
 			if(currentTag != null){
                 // photo id
 				var photoId = $(ui.helper).attr('photoid');
-                // tag id
+                // new tag id
 				var id = $(currentTag).attr('tagid');
-                // tag name
+                // new tag name
 				var name = $(currentTag).text();
                 // new tag html
 				var taghtml = '<span class="label label-primary img-tag" tagid="'+id+'">'+name+'</span>';
                 // already exists tag.
 				//var tagObj = $(ui.helper).next().children().filter(function(index){return $(this).attr('tagid')==id;});
-                var tagContainer = $(ui.helper).next().children();
+                var tagContainer = $(ui.helper).next();
                 // old tag.
                 var oldTag = $(ui.helper).next().find('span');
                 // old tag id.
                 var oldTagId = $(oldTag).attr('tagid');
-                // clear the old tag.
-                $(tagContainer).empty();
-                // add new tag.
-                $(ui.helper).next().append(taghtml);
-
-                if(oldTag != ''){
-                    $.post('/index.php/Tag/photoDeleteTag', {'photoId': photoId, 'tagId': oldTagId});
-                }
-                if(id != ''){
+                if(oldTagId == null){
+                    // add
+                    // add new tag.
+                    $(ui.helper).next().append(taghtml);
                     $.post('/index.php/Tag/photoAddTag', {'photoId': photoId, 'tagId': id});
+                }else{
+                    // modify
+                    if(id == oldTagId){
+                        // delete the tag
+                        $(tagContainer).empty();
+                        $.post('/index.php/Tag/photoDeleteTag', {'photoId': photoId, 'tagId': oldTagId});
+                    }else{
+                        // delete old tag, then add new tag
+                        // clear the old tag.
+                        $(tagContainer).empty();
+                        // add new tag.
+                        $(ui.helper).next().append(taghtml);
+
+                        if(oldTag != ''){
+                            $.post('/index.php/Tag/photoDeleteTag', {'photoId': photoId, 'tagId': oldTagId});
+                        }
+                        if(id != ''){
+                            $.post('/index.php/Tag/photoAddTag', {'photoId': photoId, 'tagId': id});
+                        }
+                    }
                 }
 
 
