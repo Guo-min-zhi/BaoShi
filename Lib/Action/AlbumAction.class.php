@@ -24,6 +24,29 @@ class AlbumAction extends Action{
         $this->display();
     }
     /**
+     * 发送post请求，用于系统间数据交换
+     * @param $url, $data_string
+     */
+    public function http_post_data($url, $data_string) {
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Content-Length: ' . strlen($data_string))
+        );
+        ob_start();
+        curl_exec($ch);
+        $return_content = ob_get_contents();
+        ob_end_clean();
+
+        $return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        return array($return_code, $return_content);
+    }
+
+    /**
      * 创建影集
      * @param $albumName
      * @param $albumTheme
@@ -266,14 +289,48 @@ class AlbumAction extends Action{
      */
 	public function publish($albumId){
 
-		if ($albumId) {
-			$Album = M('Album');
-			$Album->find($albumId);
-			$Album->publish = 1;
-			$Album->save();
+        if ($albumId) {
+            // ======================
+            // publish the album, set `publish` field to 1
+            // ======================
+            $Album = M('Album');
+            $Album->find($albumId);
+            $Album->publish = 1;
+            $Album->save();
 
+            // ======================
+            // send the pictures of this album to another system by http post.
+            // ======================
+            $url  = "http://xiaoxi.cgs.gov.cn:8001/Services/CoverService.svc/insertPicture";
+            $pictureList = array();
+            $Photo = M('Photo');
+            $condition['album_id'] = $albumId;
+            $list = $Photo->where($condition)->select();
+            foreach ($list as $picture) {
+                $one = array();
+                $one['Title'] = '';
+                $one['Url'] = $picture['path'];
+                $one['Description'] = $picture['description'];
+                $one['CameraTime'] = $picture['take_time'];
+                $Tagphoto = M('Tagphoto');
+                $photoTagId = $Tagphoto->where('photoId='.$picture['id'])->getField('tagId');
+                $Tag = M('Tag');
+                $tagName = $Tag->where('id='.$photoTagId)->getField('name');
+                $one['PictureTag'] = $tagName;
+                $one['Author'] = '';
+                $one['CategoryUrl'] = '';
+                array_push($pictureList, $one);
+            }
+            $data = array();
+            $data['PictureList'] = $pictureList;
+            $data = json_encode($data);
+            list($return_code, $return_content) = $this->http_post_data($url, $data);
+            Log::write("Post returen data:  code = '".$return_code."', content = '".$return_content."'", "INFO");
+            // echo $data;
+            // dump($data);
+           
             $this->success("发布成功", '/index.php/Album/show/albumId/'.$albumId);
-		}
+        }
 	}
 
     /**
@@ -297,8 +354,9 @@ class AlbumAction extends Action{
         $this->photos = $photoList;
 //        dump(explode( ",",$tags));
         $this->display();
-    }
 
+    }
+    
 }
 
 
